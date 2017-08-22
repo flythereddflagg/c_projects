@@ -32,22 +32,93 @@ feature is done.
 #include <stdlib.h>
 #include "dbg.h"
 
-#define MAX_LINE_LEN 80
+#define MAX_LINE_LEN 200
+#define MAX_FILES    100
 
-char line[MAX_LINE_LEN];
+struct flist{
+    char** files;
+    int len;
+};
 
-void reset_line()
+struct flist get_list()
 {
-    int i;
-    for (i = 0; i < MAX_LINE_LEN; i++) {
-        line[i] = '\0';
+    FILE* rfile = fopen(".logfind", "r");
+    check(rfile, "File not found!");
+    struct flist flogs;
+    flogs.len = 0;
+    char** list = (char**) malloc(sizeof(char) * MAX_FILES);
+    
+    int li = 0,
+        lsi = 0;
+    
+    char line[MAX_LINE_LEN];
+    for (li = 0; li < MAX_LINE_LEN; li++) {
+        line[li] = '\0';
     }
+    
+    char* item;
+    
+    char ch = ' ';
+    while (ch != EOF){
+        ch = fgetc(rfile);
+        printf("%c", ch);
+        if (li < MAX_LINE_LEN && ch != '\n') line[li++] = ch;
+        else if (ch == '\n') {
+            printf("-->%s", line);
+            strncpy(item, line, li);
+            list[lsi] = item;
+            for (li = 0; li < MAX_LINE_LEN; li++) {
+                line[li] = '\0';
+            }
+            li = 0;
+            flogs.len++;
+        }
+    }
+    flogs.files = list;
+    return flogs;
+error:
+    return flogs;
 }
+
+
 
 int check_file(char* filename, char* word, unsigned int wordlen)
 {
     FILE* rfile = fopen(filename, "r");
     check(rfile, "File not found!");
+    
+    char ch = ' ';  // make sure that ch != EOF    
+    int wi = 0, look = 0;
+    
+    while (ch != EOF){
+        // get a char
+        ch = fgetc(rfile);
+        // if you see the first letter start looking for the rest
+        if (ch == word[0]) look = 1;
+        // check if you have found the next letter in the word
+        if (wi < wordlen && ch == word[wi] && look) wi++;
+        // otherwise you reset the word index and stop looking for the word
+        else {
+            wi = 0;
+            look = 0;
+        }
+        // if you have found a sufficient number of correct letters you have
+        // found the word
+        if (wi == wordlen) return 1;
+    }
+    check(fclose(rfile) == 0, "Error with file.");
+    return 0;
+    
+error:
+    return -1;
+}
+
+int print_file_hits(char* filename, char* word, unsigned int wordlen)
+{
+    FILE* rfile = fopen(filename, "r");
+    check(rfile, "File not found!");
+    
+    char line[MAX_LINE_LEN];
     
     char ch = ' ';  // make sure that ch != EOF
     
@@ -56,7 +127,7 @@ int check_file(char* filename, char* word, unsigned int wordlen)
         wi          = 0, // word index
         look        = 0, // bool; if look == 1 we have found the first letter
         found       = 0, // bool; found the word on a line
-        infile      = 0; // bool; returns 1 for at least one instance in file
+        infile      = 0; // bool; returns number of hits in file
     
     while (ch != EOF){
         // get a char
@@ -79,11 +150,14 @@ int check_file(char* filename, char* word, unsigned int wordlen)
         if (ch == '\n') {
            if (found){
                infile += 1;
-               printf("Found in file \"%s\" On line %d: ", filename, line_number);
+               printf("Found in file \"%s\" On line %d:\n", filename, line_number);
                printf("\"%s\"\n", line);
                found = 0;
            }
-           reset_line();
+           // reset line
+            for (li = 0; li < MAX_LINE_LEN; li++) {
+                line[li] = '\0';
+            }
            li = 0;
            wi = 0;
            line_number ++; 
@@ -97,18 +171,67 @@ error:
 }
 
 
+int and_check(char* filename, int argc, char* argv[]){
+    printf("\nSearching file: \"%s\"...\n", filename);
+    int i, out = 0;
+    for (i = 1; i < argc; i++){
+        out = check_file(filename, argv[i], strlen(argv[i]));
+        if (!out){
+            printf("No results.\n");
+            return 0;
+        }
+        check(out != -1, "Error with file check");
+    }
+    for (i = 1; i < argc; i++){
+        out = print_file_hits(filename, argv[i], strlen(argv[i]));
+        printf("Found \"%s\" %d times.\n", argv[i], out);
+        check(out != -1, "Error with file hit print");
+    }
+    return 1;
+
+error:
+    return -1;
+}
+
+int or_check(char* filename, int argc, char* argv[]){
+    printf("\nSearching file: \"%s\"...\n", filename);
+    int i, out = 0;
+    for (i = 1; i < argc; i++){
+        if (!strcmp(argv[i],"-o")) continue;
+        out = print_file_hits(filename, argv[i], strlen(argv[i]));
+        printf("Found \"%s\" %d times.\n", argv[i], out);
+        check(out != -1, "Error with file hit print");
+    }
+    return 1;
+
+error:
+    return -1;
+}
+
 int main (int argc, char* argv[])
 {
-    char* ts = argv[1];
-    unsigned int tslen = strlen(ts);
-    printf("\nstring len %d\n", tslen);
-    char* fname = "data.log";
-    int out = check_file(fname, ts, tslen);    
+    char* fname;
+    int out, i, or_logic = 0;
     
-    printf("Found \"%s\" %d times.\n",ts, out);
-    check(out != -1, "Error with file check");
+    struct flist lglst = get_list();
+    
+    for (i = 1; i < argc; i++) {
+        if (!strcmp(argv[i],"-o")) {
+            or_logic = 1;
+            break;
+        }
+    }
+    for (i = 0; i < lglst.len; i++){
+        fname = lglst.files[i];
+        printf("###%s\n", fname);
+        if (or_logic) out = or_check(fname, argc, argv);
+        else out = and_check(fname, argc, argv);
+        check(out != -1, "ERROR 1")
+    }
+    free(lglst.files);
     return 0;
 
 error:
+    free(lglst.files);
     return -1;
 }
