@@ -32,8 +32,7 @@ feature is done.
 #include <stdlib.h>
 #include "dbg.h"
 
-#define MAX_LINE_LEN 200
-#define MAX_FILES    100
+#define MAX_LINE_LEN 150
 
 struct flist{
     char** files;
@@ -42,42 +41,51 @@ struct flist{
 
 struct flist get_list()
 {
+    int i;
+    struct flist lglst;
+    lglst.len = 0;
     FILE* rfile = fopen(".logfind", "r");
     check(rfile, "File not found!");
-    struct flist flogs;
-    flogs.len = 0;
-    char** list = (char**) malloc(sizeof(char) * MAX_FILES);
     
-    int li = 0,
-        lsi = 0;
+    char ch = ' ';  // make sure that ch != EOF    
     
-    char line[MAX_LINE_LEN];
-    for (li = 0; li < MAX_LINE_LEN; li++) {
-        line[li] = '\0';
-    }
-    
-    char* item;
-    
-    char ch = ' ';
     while (ch != EOF){
         ch = fgetc(rfile);
-        printf("%c", ch);
-        if (li < MAX_LINE_LEN && ch != '\n') line[li++] = ch;
-        else if (ch == '\n') {
-            printf("-->%s", line);
-            strncpy(item, line, li);
-            list[lsi] = item;
-            for (li = 0; li < MAX_LINE_LEN; li++) {
-                line[li] = '\0';
-            }
+        if (ch == '\n') lglst.len++;
+    }
+    
+    rewind(rfile);
+    ch = ' ';
+    char* line  = malloc(MAX_LINE_LEN * sizeof(char));
+    char** flst = malloc(lglst.len * sizeof(char*));
+    for (i = 0; i < lglst.len; i++){
+        flst[i] = malloc(MAX_LINE_LEN * sizeof(char));
+    }
+
+    int lsi = 0;
+    int li  = 0;
+    while (ch != EOF){
+        ch = fgetc(rfile);
+        if (ch == '\n'){
+            strncpy(flst[lsi], line, MAX_LINE_LEN);
+            lsi++;
             li = 0;
-            flogs.len++;
+            for (i = 0; i < MAX_LINE_LEN; i++){
+                line[i] = '\0';
+            }
+        }
+        else {
+            line[li] = ch;
+            li++;
         }
     }
-    flogs.files = list;
-    return flogs;
+    
+    lglst.files = flst;
+    free(line);
+    return lglst;
+
 error:
-    return flogs;
+    return lglst;
 }
 
 
@@ -151,7 +159,7 @@ int print_file_hits(char* filename, char* word, unsigned int wordlen)
            if (found){
                infile += 1;
                printf("Found in file \"%s\" On line %d:\n", filename, line_number);
-               printf("\"%s\"\n", line);
+               printf("\t\"%s\"\n", line);
                found = 0;
            }
            // reset line
@@ -172,7 +180,7 @@ error:
 
 
 int and_check(char* filename, int argc, char* argv[]){
-    printf("\nSearching file: \"%s\"...\n", filename);
+    printf("\nAND Searching file: \"%s\"...\n", filename);
     int i, out = 0;
     for (i = 1; i < argc; i++){
         out = check_file(filename, argv[i], strlen(argv[i]));
@@ -184,7 +192,7 @@ int and_check(char* filename, int argc, char* argv[]){
     }
     for (i = 1; i < argc; i++){
         out = print_file_hits(filename, argv[i], strlen(argv[i]));
-        printf("Found \"%s\" %d times.\n", argv[i], out);
+        printf("Found \"%s\" %d times.\n\n", argv[i], out);
         check(out != -1, "Error with file hit print");
     }
     return 1;
@@ -194,12 +202,12 @@ error:
 }
 
 int or_check(char* filename, int argc, char* argv[]){
-    printf("\nSearching file: \"%s\"...\n", filename);
+    printf("\nOR Searching file: \"%s\"...\n", filename);
     int i, out = 0;
     for (i = 1; i < argc; i++){
         if (!strcmp(argv[i],"-o")) continue;
         out = print_file_hits(filename, argv[i], strlen(argv[i]));
-        printf("Found \"%s\" %d times.\n", argv[i], out);
+        printf("Found \"%s\" %d times.\n\n", argv[i], out);
         check(out != -1, "Error with file hit print");
     }
     return 1;
@@ -216,19 +224,21 @@ int main (int argc, char* argv[])
     struct flist lglst = get_list();
     
     for (i = 1; i < argc; i++) {
-        if (!strcmp(argv[i],"-o")) {
+        if (!strcmp(argv[i],"-o")){
             or_logic = 1;
             break;
         }
     }
     for (i = 0; i < lglst.len; i++){
         fname = lglst.files[i];
-        printf("###%s\n", fname);
         if (or_logic) out = or_check(fname, argc, argv);
         else out = and_check(fname, argc, argv);
         check(out != -1, "ERROR 1")
     }
-    free(lglst.files);
+    for (i = 0; i < lglst.len; i++){
+        if (lglst.files[i]) free(lglst.files[i]);
+    }
+    if (lglst.files) free(lglst.files);
     return 0;
 
 error:

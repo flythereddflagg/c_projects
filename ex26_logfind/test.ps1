@@ -5,4 +5,4 @@ make
 
 .\logfind.exe word fawn
 .\logfind.exe word fawn -o
-#drmemory .\output.exe
+#drmemory .\logfind.exe word fawn
