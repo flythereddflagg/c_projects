@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://s0.2mdn.net/6166698/4050122984883644/728x90_CRG_Aq/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script>
+		
+		<title>CRG</title>
+		<meta name="ad.size" content="width=728,height=90">
+
+
+		<script src="./TweenMax.min.js.download"></script>
+		<script src="./jquery.min.js.download"></script>
+		<script src="./SplitText.min.js.download"></script>
+
+		<link rel="stylesheet" href="./css" media="all">
+
+		<link rel="stylesheet" href="./css(1)" media="all">	
+		
+		<link rel="stylesheet" href="./styles.css">
+		<link rel="stylesheet" href="./2016-toolkit.min.css">
+		<link rel="stylesheet" href="./2016-legal-panel.min.css">
+
+		<script>
+    	var clickTag = "http://www.allstate.com";
+    	</script>
+
+		<script src="./2016-legal-panel.min.js.download"></script>
+
+	</head>
+
+	
+	<body>
+
+			<div id="atAd" class="bgGreen">
+				
+				<div id="aAd_header">
+					<div id="aAd_legalCTA" class="aAd-txt--white aAd-txt--xxsmall aAd-txt--upper">LEGAL</div>
+					<div id="aAd_legalPanel" style="top: -45px;">
+						<div id="aAd_legalTxt" class="aAd-txt--white aAd-txt--xsmall">
+						NOT AVAILABLE IN EVERY STATE. Feature optional. Savings vary. Subject to terms, conditions, availability &amp; qualifications.  Allstate Vehicle and Property Insurance Co. &amp; its affiliates:  Northbrook, IL ©2016 Allstate Insurance Co.
+
+						</div>
+						<div id="aAd_legalCloseBtnTxt" class="aAd-txt--white aAd-txt--xsmall aAd-txt--upper">CLOSE</div>
+						<button id="aAd_LegalCloseCTA"></button>
+					</div>
+				</div>
+				
+
+				<a href="javascript:window.open(window.clickTag)" id="clickArea">&nbsp;</a>
+
+				<div id="bgImg1"><img src="./bg_image1.jpg"></div>
+
+				<div id="bgImg2"><img src="./bg_image2.jpg"></div>
+
+				<div id="border">&nbsp;</div>
+
+				<div id="frame1" class="txtBlue"><div style="position: relative; display: inline-block; left: -728px;" class="word1"><div style="position:relative;display:inline-block;" class="char1">D</div><div style="position:relative;display:inline-block;" class="char2">i</div><div style="position:relative;display:inline-block;" class="char3">s</div><div style="position:relative;display:inline-block;" class="char4">h</div><div style="position:relative;display:inline-block;" class="char5">w</div><div style="position:relative;display:inline-block;" class="char6">a</div><div style="position:relative;display:inline-block;" class="char7">s</div><div style="position:relative;display:inline-block;" class="char8">h</div><div style="position:relative;display:inline-block;" class="char9">e</div><div style="position:relative;display:inline-block;" class="char10">r</div></div> <div style="position: relative; display: inline-block; left: -728px;" class="word2"><div style="position:relative;display:inline-block;" class="char11">t</div><div style="position:relative;display:inline-block;" class="char12">u</div><div style="position:relative;display:inline-block;" class="char13">r</div><div style="position:relative;display:inline-block;" class="char14">n</div><div style="position:relative;display:inline-block;" class="char15">e</div><div style="position:relative;display:inline-block;" class="char16">d</div></div><br> <div style="position: relative; display: inline-block; left: -728px;" class="word3"><div style="position:relative;display:inline-block;" class="char17">y</div><div style="position:relative;display:inline-block;" class="char18">o</div><div style="position:relative;display:inline-block;" class="char19">u</div><div style="position:relative;display:inline-block;" class="char20">r</div></div> <div style="position: relative; display: inline-block; left: -728px;" class="word4"><div style="position:relative;display:inline-block;" class="char21">k</div><div style="position:relative;display:inline-block;" class="char22">i</div><div style="position:relative;display:inline-block;" class="char23">t</div><div style="position:relative;display:inline-block;" class="char24">c</div><div style="position:relative;display:inline-block;" class="char25">h</div><div style="position:relative;display:inline-block;" class="char26">e</div><div style="position:relative;display:inline-block;" class="char27">n</div></div> <div style="position: relative; display: inline-block; left: -728px;" class="word5"><div style="position:relative;display:inline-block;" class="whiteIN">i</div><div style="position:relative;display:inline-block;" class="whiteIN">n</div><div style="position:relative;display:inline-block;" class="char30">t</div><div style="position:relative;display:inline-block;" class="char31">o</div></div><br> <div style="position: relative; display: inline-block; left: -728px;" class="word6"><div style="position:relative;display:inline-block;" class="char32">a</div></div> <div style="position: relative; display: inline-block; left: -728px;" class="word7"><div style="position:relative;display:inline-block;" class="char33">p</div><div style="position:relative;display:inline-block;" class="char34">o</div><div style="position:relative;display:inline-block;" class="char35">o</div><div style="position:relative;display:inline-block;" class="char36">l</div><div style="position:relative;display:inline-block;" class="char37">?</div></div></div>
+
+				<div id="frame2" class="txtBlue"><div style="position: relative; display: inline-block; left: -728px;" class="word1"><div style="position:relative;display:inline-block;" class="char1">D</div><div style="position:relative;display:inline-block;" class="char2">o</div><div style="position:relative;display:inline-block;" class="char3">n</div><div style="position:relative;display:inline-block;" class="char4">'</div><div style="position:relative;display:inline-block;" class="char5">t</div></div> <div style="position: relative; display: inline-block; left: -728px;" class="word2"><div style="position:relative;display:inline-block;" class="char6">w</div><div style="position:relative;display:inline-block;" class="char7">o</div><div style="position:relative;display:inline-block;" class="char8">r</div><div style="position:relative;display:inline-block;" class="char9">r</div><div style="position:relative;display:inline-block;" class="char10">y</div><div style="position:relative;display:inline-block;" class="char11">,</div></div><br> <div style="position: relative; display: inline-block; left: -728px;" class="word3"><div style="position:relative;display:inline-block;" class="char12">y</div><div style="position:relative;display:inline-block;" class="char13">o</div><div style="position:relative;display:inline-block;" class="char14">u</div><div style="position:relative;display:inline-block;" class="char15">r</div></div> <div style="position: relative; display: inline-block; left: -728px;" class="word4"><div style="position:relative;display:inline-block;" class="char16">r</div><div style="position:relative;display:inline-block;" class="char17">a</div><div style="position:relative;display:inline-block;" class="char18">t</div><div style="position:relative;display:inline-block;" class="char19">e</div></div><br> <div style="position: relative; display: inline-block; left: -728px;" class="word5"><div style="position:relative;display:inline-block;" class="char20">w</div><div style="position:relative;display:inline-block;" class="char21">o</div><div style="position:relative;display:inline-block;" class="char22">n</div><div style="position:relative;display:inline-block;" class="char23">'</div><div style="position:relative;display:inline-block;" class="char24">t</div></div> <div style="position: relative; display: inline-block; left: -728px;" class="word6"><div style="position:relative;display:inline-block;" class="whiteIN">i</div><div style="position:relative;display:inline-block;" class="whiteIN">n</div><div style="position:relative;display:inline-block;" class="char27">f</div><div style="position:relative;display:inline-block;" class="char28">l</div><div style="position:relative;display:inline-block;" class="char29">a</div><div style="position:relative;display:inline-block;" class="char30">t</div><div style="position:relative;display:inline-block;" class="char31">e</div></div></div>
+
+				<div id="bkgColor" class="bgGreen"></div>
+
+				<div id="toBeIn" class="message" style="visibility: inherit; opacity: 0.099856;">
+
+				<div class="in1" style="visibility: inherit; opacity: 1;">It<span class="apostrophe">'</span>s</div>
+				<div class="in2" style="margin-left: 97px; visibility: inherit; opacity: 1;">good</div> 
+				<div class="in3" style="margin-left: 285px; visibility: inherit; opacity: 1;">To</div>
+				<div class="in4" style="margin-left: 367px; visibility: inherit; opacity: 1;">be</div> 
+				<div class="in5" style="margin-left: 440px; visibility: inherit; opacity: 1;"><span class="txtWhite">in</span></div>
+
+				</div> 
+
+				<div id="hands" class="message logoBlue" style="opacity: 0.099856; transform: matrix(1, 0, 0, 1, 0, 0); visibility: inherit;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 65" preserveAspectRatio="xMinYMin">
+
+
+				<path d="M34.9,7.2c-16.3,0-29.5,10-29.5,22.4S18.7,52.8,35,52.8,64.6,41.9,64.6,29.6,51.2,7.2,34.9,7.2M24.1,11l0.2,0.2,1.2,1.1L26.2,13c0.5,0.5,3.5,2.6,4.5,3.5A11.55,11.55,0,0,1,34,23.2l1.3,6.9,0.5,1.1,0.1,0.2,0.2,0.4c0.2,0.5.5,0.8,0.5,0.9l0.7,0.6,1,1,0.3,0.3,0.5,0.5,1.4,0.2a2.44,2.44,0,0,1,1.7.6c0.6,0.7-.5,1.1-1.3,1.3-0.3,0-1.5-.2-1.5-0.2l-0.8-.6-1.1-.7-0.3-.2L36.3,35,34,31.3a1.7,1.7,0,0,0-.2-1.3l-0.2.4a2.27,2.27,0,0,1-1.2,1.2l-0.2.1,2.4,3.4,0.1,0.2,0.5,0.6c0.1,0.1,1,.6,1,0.6l0.4,0.2,1.1,0.7,1,0.7h0.1l1.5,0.1c0.9,0.1,1.4.1,1.8,0.6,0.6,0.7-.2,1.2-1,1.4a6.54,6.54,0,0,0-3.5-.7L36.7,39l-0.3-.2L35,38.1l-1.2-.4h0l-0.3-.5a14.29,14.29,0,0,0-1.4-2V35s-0.8-1.1-.9-1.3a1.72,1.72,0,0,0,0-1.3,1.08,1.08,0,0,1-.4.5,4,4,0,0,1-1.2,1l-0.2.1,3,4.1,0.3,0.4,0.2,0.2a6.89,6.89,0,0,0,1,.4c0.7,0.3,1.5.7,2,.9L37,40.6h2a2.89,2.89,0,0,1,2,.9h0c0.6,0.7-.9,1.2-1.7,1.4-0.2-.6-0.9-1.2-3-1.4-0.7,0-1.8.1-1.8,0.1H34.4l-1-.7L33,40.7c-0.1,0-1.4-.7-1.4-0.7l-0.9-.3-0.8-1.1-0.3-.4L28.8,37l-0.4-.5-0.5-.7a2,2,0,0,0,.4-1.4l-0.4.4a6.73,6.73,0,0,1-1.9.9l-0.3.1,2.3,3,1.1,1.5,0.5,0.5,1,0.6,1,0.5L31.7,42l0.7,0.4,1.2,0.7h0.2l1.6-.1a5.66,5.66,0,0,1,2.3.2c1.5,1.1-1.9,1.6-2.3,1.7a20.56,20.56,0,0,1-5.9-1.2c-2.3-1-3-1.9-4.8-4.4L24,38.7a4.55,4.55,0,0,0-.5-2,3.22,3.22,0,0,0-.8-1,7,7,0,0,0,.2-1.6,5.58,5.58,0,0,0-.4-2.1c1.4-1.1,2.1-2.2,2.1-3.5a6.1,6.1,0,0,0-.3-1.5l-0.5-.2v0.4c0.2,2.2-1.8,3.6-3.1,4.5l-0.4.3,0.3,0.2c1,0.7,1.1,2.8.8,4.1v0.1l0.1,0.1h0.1l0.5,0.4a3.91,3.91,0,0,1-.2,4.9,1.73,1.73,0,0,1-.4.3,0.6,0.6,0,0,1-.3-0.6l-0.3-.7a24.66,24.66,0,0,0-3.4-5.6V35a66.49,66.49,0,0,0-1.2-6.8L15.6,27V26.7A18.47,18.47,0,0,1,17.1,21l0.5-1.2,0.2-.5,0.2-.5c0.1-.6-1-1.1-1.8-1.5a13.24,13.24,0,0,1-1.4-.8A29.37,29.37,0,0,1,24.1,11m6.5,34.7c-2.4,1.4-4.4.5-3.2-1.1a10.07,10.07,0,0,0,3.2,1.1m-5.7-3.2c0.3,0.3,1.7,1.4,2,1.6-1.9.8-3.3-.3-2-1.6m7.2,4.9a0.81,0.81,0,0,1-.8-0.9,0.37,0.37,0,0,1,.1-0.3l0.2-.2a15.79,15.79,0,0,0,4.4-.1,4.64,4.64,0,0,0,3-1.6c4.2-1.2,2.9-3.1,2.8-3.2,3.1-1.4.7-3.4,0.3-3.6,2.8-1.3.6-2.7-1.4-3.3l-1.1-.3h0l-0.4-.5-0.1-.1-1-1-0.5-.4-0.4-1.1-0.6-1.4c-0.1-.4-0.2-1.1-0.4-2.1l-0.1-.7-0.4-2.9,0.1-.6A15.18,15.18,0,0,1,37,19.5a6.71,6.71,0,0,1,2.3-2.6,22.23,22.23,0,0,0,3.2-2.7l0.7-.7,0.4-.4,1.8-1.8a26.9,26.9,0,0,1,9.3,5.9c-0.3.2-.7,0.5-0.7,0.5-1.1.6-3,1.6-2.6,2.5l0.1,0.3L51.7,21v0.1L52,21.8,52.1,22l0.2,0.4,0.6,2.1a24.3,24.3,0,0,1,.8,5.4v0.2l-0.7,2c-0.7,2.1-1.6,4.6-1.8,5.7v0.1a21.65,21.65,0,0,0-3.9,5.8,0.28,0.28,0,0,1-.2.2,1,1,0,0,1-.4-0.3,2.79,2.79,0,0,1-.7-2.3,3.86,3.86,0,0,1,1.4-2.9,0.6,0.6,0,0,0,.1-0.4c-0.2-1.3.1-3.4,1-4l0.2-.2-0.2-.2c-2.4-1.8-3.5-5.3-3.6-7.8V25.5l-0.4.2-0.2.3a7.57,7.57,0,0,0-.1,1.5,13.21,13.21,0,0,0,.4,2.9,9.1,9.1,0,0,0,2,3.9v0.1a6.39,6.39,0,0,0-.6,3,2,2,0,0,0,.1.8,4.72,4.72,0,0,0-1.5,3v0.9l-0.5.7L44,43a31.5,31.5,0,0,1-3.8,3,18.24,18.24,0,0,1-8.1,1.4" transform="translate(-5.4 -7.2)"></path><polygon class="cls-1" points="53.1 39.99 53.1 42.36 52.75 42.36 52.75 39.99 51.85 39.99 51.85 39.66 54.01 39.66 54.01 39.99 53.1 39.99"></polygon><polygon class="cls-1" points="56.8 42.36 56.8 40.1 55.95 42.36 55.65 42.36 54.79 40.1 54.79 42.36 54.45 42.36 54.45 39.66 54.97 39.66 55.8 41.87 56.64 39.66 57.15 39.66 57.15 42.36 56.8 42.36"></polygon></svg></div>
+				
+
+				<!-- Register R needs to be a separate word (spacing before and after) -->
+				<div id="landing" class="txtBlue"><div style="position: relative; display: inline-block; left: -500px;" class="word1">Claim</div> <div style="position: relative; display: inline-block; left: -500px;" class="word2">RateGuard</div> <div style="position: relative; display: inline-block; left: -500px;" class="reg2">®</div></div>
+
+				<div id="onlyAllstate">
+				<img src="./AllstateH_tagline.svg" style="width:236px; height:33px;"></div>
+				
+				<div id="Allstate">&nbsp;</div>
+
+				<div id="btn_cta">
+					<a href="javascript:window.open(window.clickTag)">
+					<span id="ctaCopy">Quote Now</span>
+					<div id="arrow">
+					<svg viewBox="0 0 50 50" width="30" height="17" preserveAspectRatio="xMinYMin"><polygon class="logoPink" points="0,0 50,25 0,50"></polygon></svg>
+					</div>
+					</a>
+				</div>
+			</div>
+
+			<div id="flash" class="bgGreen" style="left: 1000px; opacity: 0;">&nbsp;</div>
+			
+			<script src="./banner.js.download"></script>
+	
+</body></html>

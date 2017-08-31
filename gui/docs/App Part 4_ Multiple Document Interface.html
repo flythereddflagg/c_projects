@@ -1,0 +1,585 @@
+
+<!-- saved from url=(0045)http://www.winprog.org/tutorial/app_four.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><link href="./App Part 4_ Multiple Document Interface_files/style.css" rel="STYLESHEET" type="text/css">
+
+
+<title>App Part 4: Multiple Document Interface</title>
+<script src="./App Part 4_ Multiple Document Interface_files/ca-pub-7902540906210069.js.download"></script><script type="text/javascript" async="" src="./App Part 4_ Multiple Document Interface_files/ga.js.download"></script><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26220310-1']);
+  _gaq.push(['_setDomainName', 'winprog.org']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+
+<body>
+<table class="PRIMARY" width="100%" height="100%" cellspacing="0" cellpadding="0" id="Table1">
+<tbody><tr height="85">
+    <td class="PRIMARYHEADER" align="left" valign="top">
+		<h1>theForger's Win32 API Programming Tutorial</h1>
+    </td>
+</tr>
+<tr>
+    <td>
+        <table width="100%" height="100%" class="SECONDARY" cellspacing="0" cellpadding="3" id="Table2">
+        <tbody><tr>
+            <td class="SECONDARYLEFT" align="left" width="200" valign="top">
+				<p><a href="http://www.winprog.org/tutorial/">Home</a></p>
+				Basics
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/start.html">Getting Started</a>
+					</li><li><a href="http://www.winprog.org/tutorial/simple_window.html">A Simple Window</a>
+					</li><li><a href="http://www.winprog.org/tutorial/window_click.html">Handling Messages</a>
+					</li><li><a href="http://www.winprog.org/tutorial/message_loop.html">The Message Loop</a>
+					</li><li><a href="http://www.winprog.org/tutorial/resources.html">Using Resources</a>
+					</li><li><a href="http://www.winprog.org/tutorial/menus.html">Menus and Icons</a>
+					</li><li><a href="http://www.winprog.org/tutorial/dialogs.html">Dialog Boxes</a>
+					</li><li><a href="http://www.winprog.org/tutorial/modeless_dialogs.html">Modeless Dialogs</a>
+					</li><li><a href="http://www.winprog.org/tutorial/controls.html">Standard Controls</a>
+					</li><li><a href="http://www.winprog.org/tutorial/dlgfaq.html">Dialog FAQ</a>
+					</li></ol>
+				Creating a simple application
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/app_one.html">Creating controls at runtime</a>
+					</li><li><a href="http://www.winprog.org/tutorial/app_two.html">Files and the common dialogs</a>
+					</li><li><a href="http://www.winprog.org/tutorial/app_three.html">Tool and Status bars</a>
+					</li><li><a href="http://www.winprog.org/tutorial/app_four.html">Multiple Document Interface</a>
+					</li></ol> 
+				Graphics Device Interface
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/bitmaps.html">Bitmaps and Device Contexts</a>
+					</li><li><a href="http://www.winprog.org/tutorial/transparency.html">Transparency</a>
+					</li><li><a href="http://www.winprog.org/tutorial/animation.html">Timers and Animation</a>
+					</li><li><a href="http://www.winprog.org/tutorial/fonts.html">Text, Fonts and Colours</a>
+					</li></ol>
+				Tools and Documentation
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/references.html">References</a>
+					</li><li><a href="http://www.winprog.org/tutorial/msvc.html">Free Visual C++</a>
+					</li></ol>
+				Appendices
+					<ol type="A">
+					<li><a href="http://www.winprog.org/tutorial/errors.html">Solutions to Common Errors</a>
+					</li><li><a href="http://www.winprog.org/tutorial/apivsmfc.html">API vs. MFC</a>
+					</li><li><a href="http://www.winprog.org/tutorial/resnotes.html">Resource file notes</a>
+					</li></ol>
+            </td>
+            <td class="SECONDARYMAIN" align="left" valign="top" rowspan="2">
+                
+
+
+<h1>App Part 4: Multiple Document Interface</h1>
+
+<p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7902540906210069";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+//2007-07-29: Tutorial Page Title
+google_ad_channel = "8265092538";
+//-->
+</script>
+<script type="text/javascript" src="./App Part 4_ Multiple Document Interface_files/show_ads.js.download">
+</script><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./App Part 4_ Multiple Document Interface_files/saved_resource.html"></iframe></ins></ins>
+</p>
+
+
+
+<p>Example: app_four</p>
+<img src="./App Part 4_ Multiple Document Interface_files/app_four.gif" alt="[images/app_four.gif]" align="right">
+
+<h2>MDI Overview</h2>
+
+First a bit of background... Every window has a <i>Client Area</i>, this is
+where most programs draw images, place controls etc... the Client Area is not
+seperate from the window itself, it is simply a smaller specialised region
+of it.  Sometimes a window can be all client area, and nothing else, sometimes
+the client area is smaller to make room for menus, titles, scrollbars, etc...
+
+<p>
+In MDI terms, your main window is called the Frame, this is probably the
+only window you would have in a SDI (Single Document Interface) program.
+In MDI there is an additional window, called the <i>MDI Client Window</i>
+which is a child of your Frame window.
+Unlike the <i>Client Area</i> it is a complete and seperate window all on it's
+own, it has a client area of it's own and probably a few pixels for a border.
+You never directly handle messages for the MDI Client, it is done by the
+pre-defined windows class <code>"MDICLIENT"</code>.  You can communicate with
+and manipulate the MDI Client and the windows it contains through messages.
+
+</p><p>
+When it comes to the windows which actually display your document or
+whatever your program displays, you send a message to the MDI Client to tell it to create a new
+window of the type you've specified.  The new window is created as a child of
+the MDI Client, not of your Frame window.  This new window is an MDI Child.
+The MDI Child is a child of the MDI Client, which in turn is a child of the
+MDI Frame (Getting dizzy yet?).  To make matters worse, the MDI Child will
+probably have child windows of its own, for instance the edit control in the
+example program for this section. 
+
+</p><p>
+You are responsable for writing two (or more) Window Procedures.  One, just like
+always, for your main window(the Frame).  And one more for the MDI Child.  You may also
+have more than one type of Child, in which case, you'll want a seperate window
+procedure for each type. 
+
+</p><p>
+If I've thoroughly confused you now talking about MDI Clients and things, this diagram 
+may clear things up a little better:
+
+</p><p align="CENTER">
+<img src="./App Part 4_ Multiple Document Interface_files/mdi_diagram.gif" alt="[images/mdi_diagram.gif]" border="1">
+</p>
+
+<h2>Getting Started with MDI</h2>
+
+MDI requires a few subtle changes throughout a program, so please read through this section 
+carefully... chances are that if your MDI program doesn't work or has strange behaviour
+it's because you missed one of the alterations from a regular program.  
+
+<h3>MDI Client Window</h3>
+
+Before we create our MDI window we need to make a change to the default message processing 
+that goes on in our Window Procedure... since we're creating a Frame window that will
+host an MDI Client, we need to change the <code>DefWindowProc()</code> call to <code>DefFrameProc()</code> which adds
+specialized message handling for Frame Windows,
+
+<pre class="SNIP">    default:
+        return DefFrameProc(hwnd, g_hMDIClient, msg, wParam, lParam);
+</pre>
+
+The next step is to create the MDI Client window itself, as a child of our frame window.
+We do this in <code>WM_CREATE</code> as usual...
+
+<pre class="SNIP">    CLIENTCREATESTRUCT ccs;
+
+    ccs.hWindowMenu  = GetSubMenu(GetMenu(hwnd), 2);
+    ccs.idFirstChild = ID_MDI_FIRSTCHILD;
+
+    g_hMDIClient = CreateWindowEx(WS_EX_CLIENTEDGE, "mdiclient", NULL,
+        WS_CHILD | WS_CLIPCHILDREN | WS_VSCROLL | WS_HSCROLL | WS_VISIBLE,
+        CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+        hwnd, (HMENU)IDC_MAIN_MDI, GetModuleHandle(NULL), (LPVOID)&amp;ccs);
+</pre>
+
+The menu handle is the handle to the popup menu that the MDI client will add items to
+representing each window that is created, allowing the user to select the window they want 
+to activate from the menu, we'll add functionality shortly to handle this case.  In this example
+it's the 3rd popup (index 2) since I've added Edit and Window to the menu after File.
+
+<p>
+<code>ccs.idFirstChild</code> is a number to use as the first ID for the items
+the Client adds to the Window menu... you want this to be easily
+distinguishable from your own menu identifiers so you can handle your menu commands
+and pass the Window menu commands to <code>DefFrameProc()</code> for processing.  In the
+example I specify an identifier defined as <code>50000</code>, high enough that I know none
+of my menu command id's will be above it.
+
+</p><p>
+Now to get this menu to work properly we need to add some special handling to our 
+<code>WM_COMMAND</code> handler:
+
+</p><pre class="SNIP">    case WM_COMMAND:
+        switch(LOWORD(wParam))
+        {
+            case ID_FILE_EXIT:
+                PostMessage(hwnd, WM_CLOSE, 0, 0);
+            break;
+
+            // ... handle other regular IDs ...
+
+            // Handle MDI Window commands
+            default:
+            {
+                if(LOWORD(wParam) &gt;= ID_MDI_FIRSTCHILD)
+                {
+                    DefFrameProc(hwnd, g_hMDIClient, msg, wParam, lParam);
+                }
+                else 
+                {
+                    HWND hChild = (HWND)SendMessage(g_hMDIClient, WM_MDIGETACTIVE,0,0);
+                    if(hChild)
+                    {
+                        SendMessage(hChild, WM_COMMAND, wParam, lParam);
+                    }
+                }
+            }
+        }
+    break;
+</pre>
+
+<p>
+I've added a <code>default:</code> case which will catch all commands that I didn't process
+directly and do a check to see if the value is greater than or equal to <code>ID_MDI_FIRSTCHILD</code>.
+If it is, then the user has clicked on one of the Window menu items and we send
+the message on to <code>DefFrameProc()</code> for processing.  
+
+</p><p>
+If it isn't one of the Window
+IDs then I get the handle to the active child window and forward the message
+to it for processing.  This allows you to delegate responsibility to the Child
+windows for performing certain actions, and allows different child windows
+to handle commands in different ways if so desired.  In the example I only
+handle commands that are global to the program in the Frame window procedure,
+and send the commands which affect a certain document or child window on to the
+child window itself for processsing.
+
+</p><p>
+Since we're building on the last example, the code to size the MDI client is the same as
+the code to resize the edit control in the last example, that takes into account the size
+and position of the tool and status bars so they don't overlap the MDI client window.
+
+</p><p>
+We also need to modify our message loop a little...
+
+</p><pre class="SNIP">    while(GetMessage(&amp;Msg, NULL, 0, 0))
+    {
+        if (!TranslateMDISysAccel(g_hMDIClient, &amp;Msg))
+        {
+            TranslateMessage(&amp;Msg);
+            DispatchMessage(&amp;Msg);
+        }
+    }
+</pre>
+
+We've added an extra step (<code>TranslateMDISysAccel()</code>), that checks for the 
+pre-defined accelerator keys, Ctrl+F6 which swtiches to the next window, Ctrl+F4 which closes the Child
+and so on.  If you don't add in this check you will annoy your users by not
+providing the standard behaviour they've gotten used to, or you'll have to
+implement it manually.
+
+<h3>Child Window Class</h3>
+
+In addition to the main window of the program (the Frame window) we need to create new
+window classes for each type of child window we want.  For example you might have one
+to display text, and one to display a picture or graph.  In this example we'll only 
+be creating one child type, which will be just like the editor program in the previous
+examples.
+
+<pre class="SNIP">BOOL SetUpMDIChildWindowClass(HINSTANCE hInstance)
+{
+    WNDCLASSEX wc;
+
+    wc.cbSize        = sizeof(WNDCLASSEX);
+    wc.style         = CS_HREDRAW | CS_VREDRAW;
+    wc.lpfnWndProc   = MDIChildWndProc;
+    wc.cbClsExtra    = 0;
+    wc.cbWndExtra    = 0;
+    wc.hInstance     = hInstance;
+    wc.hIcon         = LoadIcon(NULL, IDI_APPLICATION);
+    wc.hCursor       = LoadCursor(NULL, IDC_ARROW);
+    wc.hbrBackground = (HBRUSH)(COLOR_3DFACE+1);
+    wc.lpszMenuName  = NULL;
+    wc.lpszClassName = g_szChildClassName;
+    wc.hIconSm       = LoadIcon(NULL, IDI_APPLICATION);
+
+    if(!RegisterClassEx(&amp;wc))
+    {
+        MessageBox(0, "Could Not Register Child Window", "Oh Oh...",
+            MB_ICONEXCLAMATION | MB_OK);
+        return FALSE;
+    }
+    else
+        return TRUE;
+}
+</pre>
+
+This is basically identical to registering our regular frame window, there are no particularly
+special flags here for use with MDI.  We've set the menu as NULL, and the window procedure
+to point to the child window procedure which we will write next.
+
+<h3>MDI Child Procedure</h3>
+
+The window procecure for an MDI child is much like any other with a few small exceptions.
+First of all, default messages are passed to <code>DefMDIChildProc()</code> instead of 
+<code>DefWindowProc()</code>.
+
+<p>
+In this particular case, we also want to disable the Edit and Window menu's when they 
+aren't needed (just because it's a nice thing to do), so we handle <code>WM_MDIACTIVEATE</code>
+and enable or disable them depending on if our window is getting activated or not.  If you
+have multiple types of child window, this is where you could put code to completely change the
+menu or toolbar or make alterations to other aspects of the program to reflect the actions
+and commands that are specific to the type of window being activated.
+
+</p><p>
+To be even more complete, we can disable the Close and Save File menu items as well, since they aren't
+going to be any good with no windows to act on.  I've disabled all these items by default
+in the resource so that I don't need to add extra code to do it when the application first starts
+up.
+
+</p><pre class="SNIP">LRESULT CALLBACK MDIChildWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+    switch(msg)
+    {
+        case WM_CREATE:
+        {
+            HFONT hfDefault;
+            HWND hEdit;
+
+            // Create Edit Control
+
+            hEdit = CreateWindowEx(WS_EX_CLIENTEDGE, "EDIT", "", 
+                WS_CHILD | WS_VISIBLE | WS_VSCROLL | WS_HSCROLL | ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL, 
+                0, 0, 100, 100, hwnd, (HMENU)IDC_CHILD_EDIT, GetModuleHandle(NULL), NULL);
+            if(hEdit == NULL)
+                MessageBox(hwnd, "Could not create edit box.", "Error", MB_OK | MB_ICONERROR);
+
+            hfDefault = GetStockObject(DEFAULT_GUI_FONT);
+            SendMessage(hEdit, WM_SETFONT, (WPARAM)hfDefault, MAKELPARAM(FALSE, 0));
+        }
+        break;
+        case WM_MDIACTIVATE:
+        {
+            HMENU hMenu, hFileMenu;
+            UINT EnableFlag;
+
+            hMenu = GetMenu(g_hMainWindow);
+            if(hwnd == (HWND)lParam)
+            {      //being activated, enable the menus
+                EnableFlag = MF_ENABLED;
+            }
+            else
+            {                          //being de-activated, gray the menus
+                EnableFlag = MF_GRAYED;
+            }
+
+            EnableMenuItem(hMenu, 1, MF_BYPOSITION | EnableFlag);
+            EnableMenuItem(hMenu, 2, MF_BYPOSITION | EnableFlag);
+
+            hFileMenu = GetSubMenu(hMenu, 0);
+            EnableMenuItem(hFileMenu, ID_FILE_SAVEAS, MF_BYCOMMAND | EnableFlag);
+
+            EnableMenuItem(hFileMenu, ID_FILE_CLOSE, MF_BYCOMMAND | EnableFlag);
+            EnableMenuItem(hFileMenu, ID_FILE_CLOSEALL, MF_BYCOMMAND | EnableFlag);
+
+            DrawMenuBar(g_hMainWindow);
+        }
+        break;
+        case WM_COMMAND:
+            switch(LOWORD(wParam))
+            {
+                case ID_FILE_OPEN:
+                    DoFileOpen(hwnd);
+                break;
+                case ID_FILE_SAVEAS:
+                    DoFileSave(hwnd);
+                break;
+                case ID_EDIT_CUT:
+                    SendDlgItemMessage(hwnd, IDC_CHILD_EDIT, WM_CUT, 0, 0);
+                break;
+                case ID_EDIT_COPY:
+                    SendDlgItemMessage(hwnd, IDC_CHILD_EDIT, WM_COPY, 0, 0);
+                break;
+                case ID_EDIT_PASTE:
+                    SendDlgItemMessage(hwnd, IDC_CHILD_EDIT, WM_PASTE, 0, 0);
+                break;
+            }
+        break;
+        case WM_SIZE:
+        {
+            HWND hEdit;
+            RECT rcClient;
+
+            // Calculate remaining height and size edit
+
+            GetClientRect(hwnd, &amp;rcClient);
+
+            hEdit = GetDlgItem(hwnd, IDC_CHILD_EDIT);
+            SetWindowPos(hEdit, NULL, 0, 0, rcClient.right, rcClient.bottom, SWP_NOZORDER);
+        }
+        return DefMDIChildProc(hwnd, msg, wParam, lParam);
+        default:
+            return DefMDIChildProc(hwnd, msg, wParam, lParam);
+    
+    }
+    return 0;
+}
+</pre>
+
+<p>
+I've implemented the File Open and Save as commands, the <code>DoFileOpen()</code> 
+and <code>DoFileSave()</code> are nearly the same as in previous examples with the
+ID of the edit control changed, and additionally setting the title of the MDI Child
+to the filename.
+
+</p><p>
+The Edit commands are easy, because the edit control has built in support for them, 
+we just tell it what to do.
+
+</p><p>
+Remember I mentioned that there are little things you need to remember or your application will
+behave strangely?  Note that I've called <code>DefMDIChildProc()</code> at the end of 
+<code>WM_SIZE</code>, this is important otherwise the system wont' have a chance to do 
+it's own processing on the message.  You can look up <code>DefMDIChildProc()</code> in MSDN
+for a list of the messages that it processes, and always be sure to pass them to it.
+
+
+</p><h3>Creating and Destroying Windows</h3>
+
+MDI Child windows are not created directly, isntead we send a <code>WM_MDICREATE</code> message 
+to the client window telling it what kind of window we want by setting the members of an 
+<code>MDICREATESTRUCT</code>. You can look up the various members of this struct in your 
+documentation, they are fairly straight forward.  The return value from the 
+<code>WM_MDICREATE</code> message is the handle to the newly created window.
+
+<pre class="SNIP">HWND CreateNewMDIChild(HWND hMDIClient)
+{ 
+    MDICREATESTRUCT mcs;
+    HWND hChild;
+
+    mcs.szTitle = "[Untitled]";
+    mcs.szClass = g_szChildClassName;
+    mcs.hOwner  = GetModuleHandle(NULL);
+    mcs.x = mcs.cx = CW_USEDEFAULT;
+    mcs.y = mcs.cy = CW_USEDEFAULT;
+    mcs.style = MDIS_ALLCHILDSTYLES;
+
+    hChild = (HWND)SendMessage(hMDIClient, WM_MDICREATE, 0, (LONG)&amp;mcs);
+    if(!hChild)
+    {
+        MessageBox(hMDIClient, "MDI Child creation failed.", "Oh Oh...",
+            MB_ICONEXCLAMATION | MB_OK);
+    }
+    return hChild;
+}
+</pre>
+
+<p>
+One member of <code>MDICREATESTRUCT</code> that I didn't use that can be quite usefull is
+the <code>lParam</code> member.  This can be used to send any 32bit value (like a pointer) to
+the child you are creating in order to provide it with any custom information you choose.
+In the <code>WM_CREATE</code> handler for your child window, the <code>lParam</code> value for 
+the <code>WM_CREATE</code>
+message will point to a <code>CREATESTRUCT</code>.  the <code>lpCreateParams</code> member of that structure
+will point to the <code>MDICREATESTRUCT</code> you sent along with <code>WM_MDICREATE</code>.  So in order
+to access the <code>lParam</code> value from the Child window you need to do something like
+this in the child window procedure...
+
+</p><pre class="SNIP">    case WM_CREATE:
+    {
+        CREATESTRUCT* pCreateStruct;
+        MDICREATESTRUCT* pMDICreateStruct;
+
+        pCreateStruct = (CREATESTRUCT*)lParam;
+        pMDICreateStruct = (MDICREATESTRUCT*)pCreateStruct-&gt;lpCreateParams;
+
+        /*
+        pMDICreateStruct now points to the same MDICREATESTRUCT that you
+        sent along with the WM_MDICREATE message and you can use it
+        to access the lParam.
+        */
+    }
+    break;
+</pre>
+
+<p>
+If you don't want to bother with those two extra pointers you can access the
+lParam in one step with
+<code>((MDICREATESTRUCT*)((CREATESTRUCT*)lParam)-&gt;lpCreateParams)-&gt;lParam</code>
+
+</p><p>
+Now we can implement the File commands on our menu in our Frame window procedure:
+
+</p><pre class="SNIP">    case ID_FILE_NEW:
+        CreateNewMDIChild(g_hMDIClient);
+    break;
+    case ID_FILE_OPEN:
+    {
+        HWND hChild = CreateNewMDIChild(g_hMDIClient);
+        if(hChild)
+        {
+            DoFileOpen(hChild); 
+        }
+    }
+    break;
+    case ID_FILE_CLOSE:
+    {
+        HWND hChild = (HWND)SendMessage(g_hMDIClient, WM_MDIGETACTIVE,0,0);
+        if(hChild)
+        {
+            SendMessage(hChild, WM_CLOSE, 0, 0);
+        }
+    }
+    break;
+</pre>
+
+<p>
+We can also provide some default MDI processing of window arrangment for our Window menu,
+since MDI supports this itself it's not much work.
+
+</p><pre class="SNIP">    case ID_WINDOW_TILE:
+        SendMessage(g_hMDIClient, WM_MDITILE, 0, 0);
+    break;
+    case ID_WINDOW_CASCADE:
+        SendMessage(g_hMDIClient, WM_MDICASCADE, 0, 0);
+    break;
+</pre>
+
+<p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7902540906210069";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel ="2865789986";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0000FF";
+google_color_text = "000000";
+google_color_url = "008000";
+//--></script>
+<script type="text/javascript" src="./App Part 4_ Multiple Document Interface_files/show_ads.js.download">
+</script><ins id="aswift_1_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./App Part 4_ Multiple Document Interface_files/saved_resource(1).html"></iframe></ins></ins>
+</p>
+
+            </td>
+        </tr>
+	<tr>
+		<td class="SECONDARYLEFT" width="120" align="center" valign="bottom">
+		&nbsp;
+		</td>
+	</tr>
+        </tbody></table>
+    </td>
+</tr>
+<tr>
+    <td class="PRIMARYFOOTER" height="20">Copyright © 1998-2017, Brook Miles 
+    (tut<a href="http://www.google.com/recaptcha/mailhide/d?k=01mhlzqbpR7rsPo28f9Xxd6Q==&amp;c=eJBL_p2Rumh5zFehQOYyuuI1ZxDhriZlEPiwT5pMeo4=" onclick="window.open(&#39;http://www.google.com/recaptcha/mailhide/d?k\07501mhlzqbpR7rsPo28f9Xxd6Q\75\75\46c\75eJBL_p2Rumh5zFehQOYyuuI1ZxDhriZlEPiwT5pMeo4\075&#39;, &#39;&#39;, &#39;toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300&#39;); return false;" title="Reveal this e-mail address">...</a>@winprog.org).  All rights reserved.
+</td>
+</tr>
+</tbody></table><iframe frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" style="display: none;" src="./App Part 4_ Multiple Document Interface_files/saved_resource(2).html"></iframe><iframe frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" style="display: none;" src="./App Part 4_ Multiple Document Interface_files/saved_resource(3).html"></iframe>
+
+<script type="text/javascript">
+<!--
+   var re = /\(nospam\)/ig;
+   var str;
+
+   for(i = 0;i < document.links.length;i++)
+   {
+      var link = document.links[i];
+	  var str = link.href;
+      link.href = str.replace(re, "@");
+
+	  str = link.innerHTML;
+      link.innerHTML = str.replace(re, "@");
+   }
+-->
+</script>
+
+
+
+</body></html>

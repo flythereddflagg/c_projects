@@ -1,0 +1,274 @@
+
+<!-- saved from url=(0043)http://www.winprog.org/tutorial/dlgfaq.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><link href="./Tutorial_ Dialog FAQ_files/style.css" rel="STYLESHEET" type="text/css">
+
+
+<title>Tutorial: Dialog FAQ</title>
+<script src="./Tutorial_ Dialog FAQ_files/ca-pub-7902540906210069.js.download"></script><script type="text/javascript" async="" src="./Tutorial_ Dialog FAQ_files/ga.js.download"></script><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26220310-1']);
+  _gaq.push(['_setDomainName', 'winprog.org']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+
+<body>
+<table class="PRIMARY" width="100%" height="100%" cellspacing="0" cellpadding="0" id="Table1">
+<tbody><tr height="85">
+    <td class="PRIMARYHEADER" align="left" valign="top">
+		<h1>theForger's Win32 API Programming Tutorial</h1>
+    </td>
+</tr>
+<tr>
+    <td>
+        <table width="100%" height="100%" class="SECONDARY" cellspacing="0" cellpadding="3" id="Table2">
+        <tbody><tr>
+            <td class="SECONDARYLEFT" align="left" width="200" valign="top">
+				<p><a href="http://www.winprog.org/tutorial/">Home</a></p>
+				Basics
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/start.html">Getting Started</a>
+					</li><li><a href="http://www.winprog.org/tutorial/simple_window.html">A Simple Window</a>
+					</li><li><a href="http://www.winprog.org/tutorial/window_click.html">Handling Messages</a>
+					</li><li><a href="http://www.winprog.org/tutorial/message_loop.html">The Message Loop</a>
+					</li><li><a href="http://www.winprog.org/tutorial/resources.html">Using Resources</a>
+					</li><li><a href="http://www.winprog.org/tutorial/menus.html">Menus and Icons</a>
+					</li><li><a href="http://www.winprog.org/tutorial/dialogs.html">Dialog Boxes</a>
+					</li><li><a href="http://www.winprog.org/tutorial/modeless_dialogs.html">Modeless Dialogs</a>
+					</li><li><a href="http://www.winprog.org/tutorial/controls.html">Standard Controls</a>
+					</li><li><a href="http://www.winprog.org/tutorial/dlgfaq.html">Dialog FAQ</a>
+					</li></ol>
+				Creating a simple application
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/app_one.html">Creating controls at runtime</a>
+					</li><li><a href="http://www.winprog.org/tutorial/app_two.html">Files and the common dialogs</a>
+					</li><li><a href="http://www.winprog.org/tutorial/app_three.html">Tool and Status bars</a>
+					</li><li><a href="http://www.winprog.org/tutorial/app_four.html">Multiple Document Interface</a>
+					</li></ol> 
+				Graphics Device Interface
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/bitmaps.html">Bitmaps and Device Contexts</a>
+					</li><li><a href="http://www.winprog.org/tutorial/transparency.html">Transparency</a>
+					</li><li><a href="http://www.winprog.org/tutorial/animation.html">Timers and Animation</a>
+					</li><li><a href="http://www.winprog.org/tutorial/fonts.html">Text, Fonts and Colours</a>
+					</li></ol>
+				Tools and Documentation
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/references.html">References</a>
+					</li><li><a href="http://www.winprog.org/tutorial/msvc.html">Free Visual C++</a>
+					</li></ol>
+				Appendices
+					<ol type="A">
+					<li><a href="http://www.winprog.org/tutorial/errors.html">Solutions to Common Errors</a>
+					</li><li><a href="http://www.winprog.org/tutorial/apivsmfc.html">API vs. MFC</a>
+					</li><li><a href="http://www.winprog.org/tutorial/resnotes.html">Resource file notes</a>
+					</li></ol>
+            </td>
+            <td class="SECONDARYMAIN" align="left" valign="top" rowspan="2">
+                
+
+
+<h1>Dialog FAQ</h1>
+
+<p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7902540906210069";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+//2007-07-29: Tutorial Page Title
+google_ad_channel = "8265092538";
+//-->
+</script>
+<script type="text/javascript" src="./Tutorial_ Dialog FAQ_files/show_ads.js.download">
+</script><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./Tutorial_ Dialog FAQ_files/saved_resource.html"></iframe></ins></ins>
+</p>
+
+
+
+<p>Example: dlg_three</p>
+<img src="./Tutorial_ Dialog FAQ_files/dlg_three.gif" alt="[images/dlg_three.gif]" align="right">
+
+<p>
+Now don't get me wrong, this is a <i>Tutorial</i>, not a <i>Reference</i>, but some questions people
+ask SO often that I figured I might as well include them here.
+
+</p><h2>Changing Colours</h2>
+
+In general, the only reason you'd want to do this is to simulate an link on a dialog box
+or some similar task, because otherwise you're probably just making your program ugly and
+hard on the eyes if you go adding a bunch of colors to the dialogs, but that doesn't stop 
+people from doing it, and there are actually a few valid reasons, so here you go :)
+
+<p>
+Windows sends a variety of messages related to colours to your dialog procedure, and by 
+handling these messages you can change what colour certain things are displayed in.  For
+example, to change the color of the dialog box itself, you can handle 
+<code>WM_CTLCOLORDLG</code>, to change the colors for a static control you handle 
+<code>WM_CTLCOLORSTATIC</code> and so on.
+
+</p><p>
+First you can create a brush to use to paint the background and store it for later.
+the <code>WM_CTLCOLORDLG</code> and related messages will get called often during the
+course of your program, and if you created a new brush every time, eventually you would use
+up a great deal of RAM with dead brushes.  This way we have more control, and we can delete
+it when the dialog is destroyed and we know we won't need it any more.
+
+</p><pre class="SNIP">    HBRUSH g_hbrBackground = CreateSolidBrush(RGB(0, 0, 0));
+</pre>
+
+<pre class="SNIP">    case WM_CTLCOLORDLG:
+        return (LONG)g_hbrBackground;
+    case WM_CTLCOLORSTATIC:
+    {
+        HDC hdcStatic = (HDC)wParam;
+        SetTextColor(hdcStatic, RGB(255, 255, 255));
+        SetBkMode(hdcStatic, TRANSPARENT);
+        return (LONG)g_hbrBackground;
+    }
+    break;
+</pre>
+
+<p>
+Notice the line that sets the background mode to transparent... if you leave this line off
+the background will be filled in with the brush you specify, but when the control draws the
+text it will get written over with the default background color!  Setting the text drawing
+mode to transparent fixes this problem.  The other option would be to <code>SetBkColor()</code>
+to the same color as our background brush, but I like this solution better.
+
+</p><p>
+Changing the colors on pretty much any other standard control works the same way, just look
+up the <code>WM_CTLCOLOR*</code> messages in your Win32 reference.  Note that an edit control
+will send a <code>WM_CTLCOLORSTATIC</code> if it is read only, and 
+<code>WM_CTLCOLOREDIT</code> if it isn't.
+
+</p><p>
+If you have more than one static (or other) control that you want to be different colours, then
+you'll need to check the ID of the control you are getting the message from and change your colours
+based on that.  You are passed the <code>HWND</code> of the control in <code>lParam</code>, and you can
+get the ID of the control from this using <code>GetDlgCtlrID()</code>.  Note that static controls
+are all given a default ID of <code>IDC_STATIC</code> (-1) by the resource editor, so if you 
+want to be able to tell them apart you'll need to assign them new IDs.
+
+</p><h2>Giving the Dialog an Icon</h2>
+
+A fairly simple task, you just need to send <code>WM_SETICON</code> to your dialog.  Since windows uses
+two icons however, you need to call it twice, once for the small icon displayed in the corner
+of the window, and once for the large one displayed when you hit Alt-Tab.  You can just send
+the same handle both times unless you have multi-sized icons.
+
+<p>
+To just set the default application icon, you can use the following code:
+
+</p><pre class="SNIP">    SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)LoadIcon(NULL, MAKEINTRESOURCE(IDI_APPLICATION)));
+    SendMessage(hwnd, WM_SETICON, ICON_BIG, (LPARAM)LoadIcon(NULL, MAKEINTRESOURCE(IDI_APPLICATION)));
+</pre>
+
+When you substitute your own icon resource for the default, remember to change the
+<code>HINSTANCE</code> parameter of <code>LoadIcon()</code> to your applications instance (you can get it by calling
+<code>GetModuleHandle(NULL)</code> if you don't have it stored from <code>WinMain()</code>).
+
+<h2>Why Doesn't my Combo Box Work?</h2>
+
+An all-too-common problem is people adding a combo box to their dialog and they can't figure
+out why the list doesn't show up when they run their program and click the little arrow.  
+This is understandable, since the solution is not very intuitive.  
+
+<p>
+When you create a combo box and specify it's height, you are actually specifying the entire
+height, drop-down list included, NOT the height of the control when it is collapsed which
+is determined by the system based on the size of the font used.  
+
+</p><p>
+For example, giving
+the control a height of 100 pixels, the system sizes the control itself to the default
+(lets say 30 in this case), and when you click on the arrow, the drop down list would be
+70 pixels high, for a total of 100 pixels.
+
+</p><p>
+If you use the VC++ resource editor to place the combo on your dialog, you will notice you
+can't size it vertically.  Unless you click on the arrow in the editor, and it will then 
+change the focus rectangle to indicate you are sizing the dropdown list, and you can set the
+height to whatever you want.
+
+</p><h2>What about all the other controls!</h2>
+
+Well I could give examples of all of the other controls, but that's what MSDN and Petzold 
+are for :)  If you can't figure out how to use them, you probably need to re-read some parts
+of this tutorial, or get a book which will explain things more thouroughly.
+
+<p>
+I'd like to give you a link to a useful page on MSDN, but Microsoft seems to be determined to prevent
+me from doing so as links to individual MSDN pages either change rapidly or don't work period.  Therefor
+you'll probably have to figure out how to get around yourself, look around for sections like 
+<i>User Interface Services</i>, and <i>Windows Controls</i>, sometimes under a <i>Platform SDK</i> section.
+
+</p><p>
+<a href="http://msdn.microsoft.com/library/?url=/library/en-us/shellcc/platform/commctls/indivcontrol.asp">MSDN - Windows Controls</a>
+
+</p><p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7902540906210069";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel ="2865789986";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0000FF";
+google_color_text = "000000";
+google_color_url = "008000";
+//--></script>
+<script type="text/javascript" src="./Tutorial_ Dialog FAQ_files/show_ads.js.download">
+</script><ins id="aswift_1_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./Tutorial_ Dialog FAQ_files/saved_resource(1).html"></iframe></ins></ins>
+</p>
+
+            </td>
+        </tr>
+	<tr>
+		<td class="SECONDARYLEFT" width="120" align="center" valign="bottom">
+		&nbsp;
+		</td>
+	</tr>
+        </tbody></table>
+    </td>
+</tr>
+<tr>
+    <td class="PRIMARYFOOTER" height="20">Copyright © 1998-2017, Brook Miles 
+    (tut<a href="http://www.google.com/recaptcha/mailhide/d?k=01mhlzqbpR7rsPo28f9Xxd6Q==&amp;c=eJBL_p2Rumh5zFehQOYyuuI1ZxDhriZlEPiwT5pMeo4=" onclick="window.open(&#39;http://www.google.com/recaptcha/mailhide/d?k\07501mhlzqbpR7rsPo28f9Xxd6Q\75\75\46c\75eJBL_p2Rumh5zFehQOYyuuI1ZxDhriZlEPiwT5pMeo4\075&#39;, &#39;&#39;, &#39;toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300&#39;); return false;" title="Reveal this e-mail address">...</a>@winprog.org).  All rights reserved.
+</td>
+</tr>
+</tbody></table><iframe frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" style="display: none;" src="./Tutorial_ Dialog FAQ_files/saved_resource(2).html"></iframe><iframe frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" style="display: none;" src="./Tutorial_ Dialog FAQ_files/saved_resource(3).html"></iframe>
+
+<script type="text/javascript">
+<!--
+   var re = /\(nospam\)/ig;
+   var str;
+
+   for(i = 0;i < document.links.length;i++)
+   {
+      var link = document.links[i];
+	  var str = link.href;
+      link.href = str.replace(re, "@");
+
+	  str = link.innerHTML;
+      link.innerHTML = str.replace(re, "@");
+   }
+-->
+</script>
+
+
+
+</body></html>

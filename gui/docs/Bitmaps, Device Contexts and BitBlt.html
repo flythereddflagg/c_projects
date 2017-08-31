@@ -1,0 +1,379 @@
+
+<!-- saved from url=(0044)http://www.winprog.org/tutorial/bitmaps.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><link href="./Bitmaps, Device Contexts and BitBlt_files/style.css" rel="STYLESHEET" type="text/css">
+
+
+<title>Bitmaps, Device Contexts and BitBlt</title>
+<script src="./Bitmaps, Device Contexts and BitBlt_files/ca-pub-7902540906210069.js.download"></script><script type="text/javascript" async="" src="./Bitmaps, Device Contexts and BitBlt_files/ga.js.download"></script><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26220310-1']);
+  _gaq.push(['_setDomainName', 'winprog.org']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+
+<body>
+<table class="PRIMARY" width="100%" height="100%" cellspacing="0" cellpadding="0" id="Table1">
+<tbody><tr height="85">
+    <td class="PRIMARYHEADER" align="left" valign="top">
+		<h1>theForger's Win32 API Programming Tutorial</h1>
+    </td>
+</tr>
+<tr>
+    <td>
+        <table width="100%" height="100%" class="SECONDARY" cellspacing="0" cellpadding="3" id="Table2">
+        <tbody><tr>
+            <td class="SECONDARYLEFT" align="left" width="200" valign="top">
+				<p><a href="http://www.winprog.org/tutorial/">Home</a></p>
+				Basics
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/start.html">Getting Started</a>
+					</li><li><a href="http://www.winprog.org/tutorial/simple_window.html">A Simple Window</a>
+					</li><li><a href="http://www.winprog.org/tutorial/window_click.html">Handling Messages</a>
+					</li><li><a href="http://www.winprog.org/tutorial/message_loop.html">The Message Loop</a>
+					</li><li><a href="http://www.winprog.org/tutorial/resources.html">Using Resources</a>
+					</li><li><a href="http://www.winprog.org/tutorial/menus.html">Menus and Icons</a>
+					</li><li><a href="http://www.winprog.org/tutorial/dialogs.html">Dialog Boxes</a>
+					</li><li><a href="http://www.winprog.org/tutorial/modeless_dialogs.html">Modeless Dialogs</a>
+					</li><li><a href="http://www.winprog.org/tutorial/controls.html">Standard Controls</a>
+					</li><li><a href="http://www.winprog.org/tutorial/dlgfaq.html">Dialog FAQ</a>
+					</li></ol>
+				Creating a simple application
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/app_one.html">Creating controls at runtime</a>
+					</li><li><a href="http://www.winprog.org/tutorial/app_two.html">Files and the common dialogs</a>
+					</li><li><a href="http://www.winprog.org/tutorial/app_three.html">Tool and Status bars</a>
+					</li><li><a href="http://www.winprog.org/tutorial/app_four.html">Multiple Document Interface</a>
+					</li></ol> 
+				Graphics Device Interface
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/bitmaps.html">Bitmaps and Device Contexts</a>
+					</li><li><a href="http://www.winprog.org/tutorial/transparency.html">Transparency</a>
+					</li><li><a href="http://www.winprog.org/tutorial/animation.html">Timers and Animation</a>
+					</li><li><a href="http://www.winprog.org/tutorial/fonts.html">Text, Fonts and Colours</a>
+					</li></ol>
+				Tools and Documentation
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/references.html">References</a>
+					</li><li><a href="http://www.winprog.org/tutorial/msvc.html">Free Visual C++</a>
+					</li></ol>
+				Appendices
+					<ol type="A">
+					<li><a href="http://www.winprog.org/tutorial/errors.html">Solutions to Common Errors</a>
+					</li><li><a href="http://www.winprog.org/tutorial/apivsmfc.html">API vs. MFC</a>
+					</li><li><a href="http://www.winprog.org/tutorial/resnotes.html">Resource file notes</a>
+					</li></ol>
+            </td>
+            <td class="SECONDARYMAIN" align="left" valign="top" rowspan="2">
+                
+
+
+<h1>Bitmaps, Device Contexts and BitBlt</h1>
+
+<p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7902540906210069";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+//2007-07-29: Tutorial Page Title
+google_ad_channel = "8265092538";
+//-->
+</script>
+<script type="text/javascript" src="./Bitmaps, Device Contexts and BitBlt_files/show_ads.js.download">
+</script><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./Bitmaps, Device Contexts and BitBlt_files/saved_resource.html"></iframe></ins></ins>
+</p>
+
+
+
+<p>Example: bmp_one</p>
+<img src="./Bitmaps, Device Contexts and BitBlt_files/bmp_one.gif" alt="[images/bmp_one.gif]" align="right">
+
+<h2>GDI</h2>
+
+The really great thing about MS Windows is that unlike DOS, you don't need to know anything
+about what video hardware you are using to display graphics.  Instead, windows provides
+an API called the Graphics Device Interface, or GDI.  The GDI uses a set of generic graphics 
+objects that can be used to draw to the screen, to memory, or even to printers.
+
+<h3>Device Contexts</h3>
+
+The GDI revolves around an object called the Device Context (DC), represented by the data type 
+<code>HDC</code> (Handle to Device Context).  An HDC is basically a handle to something you can
+draw on;  it can represent the entire screen, an entire window, the client area of a window,
+a bitmap stored in memory, or a printer.  The nice part is that you don't even need to know which one it
+refers to, you can use it basically the same way, which is especially handy for writing custom
+drawing functions which you can then use on any of these devices without changing it for each one.
+
+<p>
+An HDC like most GDI objects is opaque, meaning that
+you can't access it's data directly... but you can pass it to various GDI functions that will
+operate on it, either to draw something, get information about it, or change the object in
+some way.
+
+</p><p>
+For example, if you wanted to draw on a window, first you would retreive an <code>HDC</code> 
+representing the window with <code>GetDC()</code>, then you could use any of the GDI functions
+that take an <code>HDC</code> like <code>BitBlt()</code> for drawing images, 
+<code>TextOut()</code> for drawing text, <code>LineTo()</code> for lines and so on.
+
+</p><h3>Bitmaps</h3>
+
+Bitmaps can be loaded much like icons in earlier examples, there is <code>LoadBitmap()</code> for 
+the most basic functionality of simply loading a bitmap resource, and <code>LoadImage()</code> can 
+be used to load bitmaps from a <code>*.bmp</code> file just as it can for icons.
+
+<p>
+One of the quirks of GDI is that you can't draw to bitmap objects (<code>HBITMAP</code> type) directly.
+Remember that drawing operations are abstracted by Device Contexts, so in order to use these drawing 
+functions on a bitmap, you need to create a Memory DC, and then select the <code>HBITMAP</code> into
+it with <code>SelectObject()</code>.  The effect is that the "device" that the <code>HDC</code> refers to is the bitmap in memory, and when you operate
+on the <code>HDC</code>, the resulting graphic operations are applied to the bitmap.  As I mentioned, this is actually
+a very conveiniant way of doing things, as you can write code that draws to an <code>HDC</code> and you can use it
+on a Window DC or a Memory DC without any checks or changes.
+
+</p><p>
+You do have the option of manipulating the bitmap data in memory yourself.  You can
+do this with Device Independant Bitmaps (DIB), and you can even combine GDI and manual operations on the DIB.
+However for the time being, this is beyond the scope of the basic tutorial and for now we're just cover the
+simpler GDI operations on their own.
+
+</p><h3>GDI Leaks</h3>
+
+<p>
+Once you're finished with an <code>HDC</code>, it's very important to release it (just how you do that depends
+on how you got it, which we'll talk about in a bit).  GDI objects are limited in number.  In 
+versions of windows prior to Windows 95, they were not only incredably limited but also shared system
+wide, so that if one program used up too many, none of the rest would be able to draw anything!
+Fortunately this isn't the case any longer, and you could get away with using up quite a lot of
+resources in Windows 2000 or XP before anything too bad happened... but it's easy to forget to
+free GDI objects and they can quickly run your program out of GDI resources under Windows 9x.
+Theorhetically you shouldn't be able to drain the system of GDI resources in NT systems 
+(NT/2K/XP)
+but it still happens in extreme cases, or if you hit the right bug on the nose.
+
+</p><p>
+If your program runs fine for a few minutes and then starts drawing strangely or not at all, it's a 
+good sign that you're leaking GDI resources.  HDCs aren't the only GDI objects you need to be careful
+about releasing, but generally it's ok to keep things like bitmaps and fonts around for the entire
+lifetime of your program, since it's much more efficient than reloading them each time you 
+need them.
+
+</p><p>
+Also, an HDC can only contain one of each type of object (bitmap, font, pen...) at a time, 
+and when you select a new one in it will return the last one.  It's very important that you 
+deal with this object properly.  If you ignore it completely, it might be lost and pile up 
+in memory as a GDI  leak.  When an HDC is created, it's also created with some default 
+objects selected into it... it's a good idea to store these when they are returned to you, 
+and then when you are completed drawing with the <code>HDC</code> select them back into it.  
+</p><p>
+This is particularly important as you can't delete a GDI object while it is selected into an 
+HDC.  To clean up properly, you should reselect the default object back into the HDC 
+releasing the object you had selected into it, which you can then 
+<code>DeleteObject()</code> 
+successfully.  
+Trying to 
+delete a bitmap 
+you created while that bitmap is selected into an HDC will fail, and probably leak the 
+bitmap if you assume it has been cleaned up from that point on.
+
+</p><p>
+Even Microsoft engineers get caught by this, there was a bug in one of the 
+Windows screensavers and it
+turns out it was because the default bitmap wasn't getting replaced causing a leak and 
+eventually the screensaver ran out of GDI resources.  Be warned!  It's an 
+easy mistake to make.
+
+</p><h2>Displaying Bitmaps</h2>
+
+Ok, down to business.  The simplest drawing operations on a window occur by handling <code>WM_PAINT</code>.
+When your window is first displayed, restored from being minimised, or uncovered from having another window
+on top of it, Windows sends the <code>WM_PAINT</code> message to the window to let it know that it needs
+to redraw it's contents.  When you draw something on the screen it is NOT permanent, it's only there untill
+something else draws over it, and you will need to redraw it when that part of your 
+window becomes visible to the user again.
+
+<pre class="SNIP">HBITMAP g_hbmBall = NULL;
+</pre>
+
+<pre class="SNIP">    case WM_CREATE:
+        g_hbmBall = LoadBitmap(GetModuleHandle(NULL), MAKEINTRESOURCE(IDB_BALL));
+        if(g_hbmBall == NULL)
+            MessageBox(hwnd, "Could not load IDB_BALL!", "Error", MB_OK | MB_ICONEXCLAMATION);
+    break;
+</pre>
+
+The first step is of course loading the bitmap, this is quite simple with a bitmap resource, there are
+no significant differences from loading other resource types.  Then we can get down to drawing...
+
+<pre class="SNIP">    case WM_PAINT:
+    {
+        BITMAP bm;
+        PAINTSTRUCT ps;
+
+        HDC hdc = BeginPaint(hwnd, &amp;ps);
+
+        HDC hdcMem = CreateCompatibleDC(hdc);
+        HBITMAP hbmOld = SelectObject(hdcMem, g_hbmBall);
+
+        GetObject(g_hbmBall, sizeof(bm), &amp;bm);
+
+        BitBlt(hdc, 0, 0, bm.bmWidth, bm.bmHeight, hdcMem, 0, 0, SRCCOPY);
+
+        SelectObject(hdcMem, hbmOld);
+        DeleteDC(hdcMem);
+
+        EndPaint(hwnd, &amp;ps);
+    }
+    break;
+</pre>
+
+<h3>Getting the Window DC</h3>
+
+<p>
+To start off we declare a couple of variables we need.  Notice that the first one is a <code>BITMAP</code>, 
+not an <code>HBITMAP</code>.  <code>BITMAP</code> is a struct that holds information about an <code>HBITMAP</code>
+which is the actual GDI object.  We need a way to get the height and width of the <code>HBITMAP</code> so we
+use <code>GetObject()</code> which contrary to it's name doesn't really get an object, but rather information
+about an existing one.  "GetObjectInfo" would have been a more appropriate label.  <code>GetObject()</code> works
+for various GDI object types which it can distinguish based on the value of the second parameter, the size of the
+structure.
+
+</p><p>
+The <code>PAINTSTRUCT</code> is a structure that contains information about the window being painted and what exactly is
+going on with the paint message.  For most simple tasks, you can simply ignore the information it contains, but it's
+required for the call to <code>BeginPaint()</code>.  <code>BeginPaint()</code> as it's name suggests is designed
+specifically for handling the <code>WM_PAINT</code> message.  When not handling a <code>WM_PAINT</code> message you would use 
+<code>GetDC()</code> which we will see in the timer animation examples in a while... but in <code>WM_PAINT</code>, it's important
+to use <code>BeginPaint()</code> and <code>EndPaint()</code>.
+
+</p><p>
+<code>BeginPaint()</code> returns us an <code>HDC</code> that represents the <code>HWND</code> that we pass to it, the
+one that <code>WM_PAINT</code> is being handled for.  Any drawing operation we perform on this <code>HDC</code> will immediately display
+on the screen.
+
+</p><h3>Setting up a Memory DC for the Bitmap</h3>
+<p>
+As I mention above, in order to draw on or with bitmaps, we need to create a DC in memory... the easiest way to do that
+here is to <code>CreateCompatibleDC()</code> with the one we already have.  This gives us a Memory DC that is
+compatible with the color depth and display properties of the <code>HDC</code> for the window.
+
+</p><p>
+Now we call <code>SelectObject()</code> to select the bitmap into the DC being careful to store the default
+bitmap so that we can replace it later on and not leak GDI objects.
+
+</p><h3>Drawing</h3>
+<p>
+Once we've gotten the dimentions of the bitmap filled into the <code>BITMAP</code> struct, we can call 
+<code>BitBlt()</code> to copy the image from our Memory DC to the Window DC, thus displaying on the screen.
+As always, you can look up each parameter in MSDN, but in short they are: The destination, the position
+and size, the source and source position, and finally the Raster Operation (ROP code), which specifies how 
+to do the copy.  In this case, we want a simple exact copy of the source made, no fancy stuff.
+
+</p><p>
+<code>BitBlt()</code> is probably the all time happiest function in all of the Win32 API and is the staple
+diet of anyone learning to write games or other graphics applications in windows.  It was probably the
+first API that I memorised all the parameters to.
+
+</p><h3>Cleanup</h3>
+<p>
+At this point the bitmap should be on the screen, and we need to clean up after ourselves.  The first thing
+to do is restore the Memory DC to the state it was when we got it, which means replacing our bitmap with the
+default one that we saved.  Next we can delete it altogether with <code>DeleteDC()</code>.
+
+</p><p>
+Finally we release the Window DC we got from <code>BeginPaint()</code> using <code>EndPaint()</code>.
+
+
+</p><p>
+Destroying an <code>HDC</code> is a little confusing sometimes because there are at least 3 ways to do it
+depending on how you got it in the first place.  Here's a list of the common methods of gaining an HDC,
+and how to release it when you're done.
+
+</p><ul>
+<li>GetDC() - ReleaseDC()
+</li><li>BeginPaint() - EndPaint()
+</li><li>CreateCompatibleDC() - DeleteDC()
+</li></ul>
+
+<p>
+And finally, at the termination of our program, we want to free any resources that we allocated.  Technically
+speaking this isn't absolutely required, since modern Windows platforms are pretty good at freeing everything
+when your program exists, but it's always a good idea to keep track of your own objects because if get lazy
+and don't delete them they have a habit of getting loose.  And no doubt, there
+are still bugs in windows especially older versions that won't clean up all of your GDI objects if you don't 
+do a thorough job.
+
+</p><pre class="SNIP">    case WM_DESTROY:
+        DeleteObject(g_hbmBall);
+        PostQuitMessage(0);
+    break;
+</pre>
+
+
+<p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7902540906210069";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel ="2865789986";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0000FF";
+google_color_text = "000000";
+google_color_url = "008000";
+//--></script>
+<script type="text/javascript" src="./Bitmaps, Device Contexts and BitBlt_files/show_ads.js.download">
+</script><ins id="aswift_1_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./Bitmaps, Device Contexts and BitBlt_files/saved_resource(1).html"></iframe></ins></ins>
+</p>
+
+            </td>
+        </tr>
+	<tr>
+		<td class="SECONDARYLEFT" width="120" align="center" valign="bottom">
+		&nbsp;
+		</td>
+	</tr>
+        </tbody></table>
+    </td>
+</tr>
+<tr>
+    <td class="PRIMARYFOOTER" height="20">Copyright © 1998-2017, Brook Miles 
+    (tut<a href="http://www.google.com/recaptcha/mailhide/d?k=01mhlzqbpR7rsPo28f9Xxd6Q==&amp;c=eJBL_p2Rumh5zFehQOYyuuI1ZxDhriZlEPiwT5pMeo4=" onclick="window.open(&#39;http://www.google.com/recaptcha/mailhide/d?k\07501mhlzqbpR7rsPo28f9Xxd6Q\75\75\46c\75eJBL_p2Rumh5zFehQOYyuuI1ZxDhriZlEPiwT5pMeo4\075&#39;, &#39;&#39;, &#39;toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300&#39;); return false;" title="Reveal this e-mail address">...</a>@winprog.org).  All rights reserved.
+</td>
+</tr>
+</tbody></table><iframe frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" style="display: none;" src="./Bitmaps, Device Contexts and BitBlt_files/saved_resource(2).html"></iframe><iframe frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" style="display: none;" src="./Bitmaps, Device Contexts and BitBlt_files/saved_resource(3).html"></iframe>
+
+<script type="text/javascript">
+<!--
+   var re = /\(nospam\)/ig;
+   var str;
+
+   for(i = 0;i < document.links.length;i++)
+   {
+      var link = document.links[i];
+	  var str = link.href;
+      link.href = str.replace(re, "@");
+
+	  str = link.innerHTML;
+      link.innerHTML = str.replace(re, "@");
+   }
+-->
+</script>
+
+
+
+</body></html>

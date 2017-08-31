@@ -1,0 +1,120 @@
+/* latin */
+@font-face {
+  font-family: 'ITC Avant Garde Gothic';
+  font-style: italic;
+  font-weight: 200;
+  src: url(https://fonts.gstatic.com/l/8a4OSkh-GRpmToBPLuXyig/font?kit=5iy81UGEFz4nT9gF2PE084rUxzs3dBh9owQWZD_I1kalZWShKCRro06X1p0E_W1G&skey=740d02818de0687b&v=v1) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin */
+@font-face {
+  font-family: 'ITC Avant Garde Gothic';
+  font-style: italic;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/l/8a4OSkh-GRpmToBPLuXyig/font?kit=brQiNOL4FQlnmlPu98XEAh4k3HEzOdC17kGLYj-usYj5P7wK4alSGdJ7_atPdITf&skey=1693f95d7042eb07&v=v1) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin */
+@font-face {
+  font-family: 'ITC Avant Garde Gothic';
+  font-style: italic;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/l/8a4OSkh-GRpmToBPLuXyig/font?kit=5iy81UGEFz4nT9gF2PE0838Vn3OQQ1leizci-Ww26mOlZWShKCRro06X1p0E_W1G&skey=8ddf22bd21ae5548&v=v1) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin */
+@font-face {
+  font-family: 'ITC Avant Garde Gothic';
+  font-style: italic;
+  font-weight: 600;
+  src: url(https://fonts.gstatic.com/l/8a4OSkh-GRpmToBPLuXyig/font?kit=5iy81UGEFz4nT9gF2PE08622hvShOcUyRI6zvBs_TD2lZWShKCRro06X1p0E_W1G&skey=55a5bd113fba1c61&v=v1) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin */
+@font-face {
+  font-family: 'ITC Avant Garde Gothic';
+  font-style: normal;
+  font-weight: 200;
+  src: url(https://fonts.gstatic.com/l/8a4OSkh-GRpmToBPLuXyig/font?kit=30l98HaC3TH8E62F8Hdf0-YakCyTVaBSZ6olBJ0XgUOOD-SAqMfCqtyy1DTMpRju&skey=a024e34945824c00&v=v1) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin */
+@font-face {
+  font-family: 'ITC Avant Garde Gothic';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/l/8a4OSkh-GRpmToBPLuXyig/font?kit=GDKTAac47CE1TTV02O4Lb10uhLZgzAUviqfYtILv_vj3rGVtsTkPsbDajuO5ueQw&skey=a7fad9dcef3b303d&v=v1) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin */
+@font-face {
+  font-family: 'ITC Avant Garde Gothic';
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/l/8a4OSkh-GRpmToBPLuXyig/font?kit=30l98HaC3TH8E62F8Hdf0yDDpQC3Y5H5BuSAyOxxkuCOD-SAqMfCqtyy1DTMpRju&skey=d239713b93ca6080&v=v1) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin */
+@font-face {
+  font-family: 'ITC Avant Garde Gothic';
+  font-style: normal;
+  font-weight: 600;
+  src: url(https://fonts.gstatic.com/l/8a4OSkh-GRpmToBPLuXyig/font?kit=30l98HaC3TH8E62F8Hdf038NsSxk7LEa8xFwIZ40m5KOD-SAqMfCqtyy1DTMpRju&skey=de4a7cf0fde45495&v=v1) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin */
+@font-face {
+  font-family: 'ITC Avant Garde Gothic';
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/l/8a4OSkh-GRpmToBPLuXyig/font?kit=30l98HaC3TH8E62F8Hdf04S_etK2Wp7Z-65iG0RqvdaOD-SAqMfCqtyy1DTMpRju&skey=24a383e9f6389e74&v=v1) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin */
+@font-face {
+  font-family: 'ITC Avant Garde Gothic Condensed';
+  font-style: italic;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/l/8a4OSkh-GRpmToBPLuXyig/font?kit=SeZLlc3uqjrzuPg-J0Oo71ruNHQXzoXmlomKvw3o8d-xi73mJOgGOHiMysAXvavs&skey=30ed1af450a91ce2&v=v1) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin */
+@font-face {
+  font-family: 'ITC Avant Garde Gothic Condensed';
+  font-style: italic;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/l/8a4OSkh-GRpmToBPLuXyig/font?kit=qPd2EgXZnw0oKwhK3kdxG1ruNHQXzoXmlomKvw3o8d-GMB47zICfCsFQxgFKLQAx&skey=14273d93d1cf30fe&v=v1) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin */
+@font-face {
+  font-family: 'ITC Avant Garde Gothic Condensed';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/l/8a4OSkh-GRpmToBPLuXyig/font?kit=ifFR9l2g-BgA8_8zY8eY0VruNHQXzoXmlomKvw3o8d9Ie-8PJmbxBRhGxCFUjPrD&skey=6ab29ab2b1655d69&v=v1) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin */
+@font-face {
+  font-family: 'ITC Avant Garde Gothic Condensed';
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/l/8a4OSkh-GRpmToBPLuXyig/font?kit=wR7IlF0q-EA5E_zCKp12K1ruNHQXzoXmlomKvw3o8d9B8yRb6_i5NQMbUy-1a-Nh&skey=a9e4a247a4df3e3d&v=v1) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin */
+@font-face {
+  font-family: 'ITC Avant Garde Gothic Condensed';
+  font-style: normal;
+  font-weight: 600;
+  src: url(https://fonts.gstatic.com/l/8a4OSkh-GRpmToBPLuXyig/font?kit=wR7IlF0q-EA5E_zCKp12K1ruNHQXzoXmlomKvw3o8d_2GDPz95_JnxWQdocVW2WZ&skey=69d28d16d4bf9c3e&v=v1) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin */
+@font-face {
+  font-family: 'ITC Avant Garde Gothic Condensed';
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/l/8a4OSkh-GRpmToBPLuXyig/font?kit=wR7IlF0q-EA5E_zCKp12K1ruNHQXzoXmlomKvw3o8d-K9PqHkJuOIq-Z3xImNQT9&skey=4934fa0765305e7d&v=v1) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}

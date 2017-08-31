@@ -1,0 +1,300 @@
+
+<!-- saved from url=(0042)http://www.winprog.org/tutorial/start.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><link href="./Tutorial_ Getting Started_files/style.css" rel="STYLESHEET" type="text/css">
+
+
+<title>Tutorial: Getting Started</title>
+<script src="./Tutorial_ Getting Started_files/ca-pub-7902540906210069.js.download"></script><script type="text/javascript" async="" src="./Tutorial_ Getting Started_files/ga.js.download"></script><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26220310-1']);
+  _gaq.push(['_setDomainName', 'winprog.org']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+
+<body>
+<table class="PRIMARY" width="100%" height="100%" cellspacing="0" cellpadding="0" id="Table1">
+<tbody><tr height="85">
+    <td class="PRIMARYHEADER" align="left" valign="top">
+		<h1>theForger's Win32 API Programming Tutorial</h1>
+    </td>
+</tr>
+<tr>
+    <td>
+        <table width="100%" height="100%" class="SECONDARY" cellspacing="0" cellpadding="3" id="Table2">
+        <tbody><tr>
+            <td class="SECONDARYLEFT" align="left" width="200" valign="top">
+				<p><a href="http://www.winprog.org/tutorial/">Home</a></p>
+				Basics
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/start.html">Getting Started</a>
+					</li><li><a href="http://www.winprog.org/tutorial/simple_window.html">A Simple Window</a>
+					</li><li><a href="http://www.winprog.org/tutorial/window_click.html">Handling Messages</a>
+					</li><li><a href="http://www.winprog.org/tutorial/message_loop.html">The Message Loop</a>
+					</li><li><a href="http://www.winprog.org/tutorial/resources.html">Using Resources</a>
+					</li><li><a href="http://www.winprog.org/tutorial/menus.html">Menus and Icons</a>
+					</li><li><a href="http://www.winprog.org/tutorial/dialogs.html">Dialog Boxes</a>
+					</li><li><a href="http://www.winprog.org/tutorial/modeless_dialogs.html">Modeless Dialogs</a>
+					</li><li><a href="http://www.winprog.org/tutorial/controls.html">Standard Controls</a>
+					</li><li><a href="http://www.winprog.org/tutorial/dlgfaq.html">Dialog FAQ</a>
+					</li></ol>
+				Creating a simple application
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/app_one.html">Creating controls at runtime</a>
+					</li><li><a href="http://www.winprog.org/tutorial/app_two.html">Files and the common dialogs</a>
+					</li><li><a href="http://www.winprog.org/tutorial/app_three.html">Tool and Status bars</a>
+					</li><li><a href="http://www.winprog.org/tutorial/app_four.html">Multiple Document Interface</a>
+					</li></ol> 
+				Graphics Device Interface
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/bitmaps.html">Bitmaps and Device Contexts</a>
+					</li><li><a href="http://www.winprog.org/tutorial/transparency.html">Transparency</a>
+					</li><li><a href="http://www.winprog.org/tutorial/animation.html">Timers and Animation</a>
+					</li><li><a href="http://www.winprog.org/tutorial/fonts.html">Text, Fonts and Colours</a>
+					</li></ol>
+				Tools and Documentation
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/references.html">References</a>
+					</li><li><a href="http://www.winprog.org/tutorial/msvc.html">Free Visual C++</a>
+					</li></ol>
+				Appendices
+					<ol type="A">
+					<li><a href="http://www.winprog.org/tutorial/errors.html">Solutions to Common Errors</a>
+					</li><li><a href="http://www.winprog.org/tutorial/apivsmfc.html">API vs. MFC</a>
+					</li><li><a href="http://www.winprog.org/tutorial/resnotes.html">Resource file notes</a>
+					</li></ol>
+            </td>
+            <td class="SECONDARYMAIN" align="left" valign="top" rowspan="2">
+                
+
+
+<h1>Getting Started</h1>
+
+<p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7902540906210069";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+//2007-07-29: Tutorial Page Title
+google_ad_channel = "8265092538";
+//-->
+</script>
+<script type="text/javascript" src="./Tutorial_ Getting Started_files/show_ads.js.download">
+</script><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./Tutorial_ Getting Started_files/saved_resource.html"></iframe></ins></ins>
+</p>
+
+
+
+<h2>What this tutorial is all about</h2>
+
+This tutorial is intended to present to you the basics (and common extras)
+of writing programs using the Win32 API.  The language used is C, most C++ compilers
+will compile it as well.  As a matter of fact, most of the information is applicable
+to any language that can access the API, inlcuding Java, Assembly and Visual Basic.
+I will not however present any code relating to these languages and you're on your
+own in that regard, but several people have previously used this document in said
+languages with quite a bit of success.
+
+<p>
+This tutorial <i>will not</i> teach you the C language, nor will it tell you how to
+run your particular compiler (Borland C++, Visual C++, LCC-Win32, etc...)  I will
+however take a few moments in the appendix to provide some notes on using the compilers
+I have knowledge of.
+
+</p><p>
+If you don't know what a <i>macro</i> or a <i>typedef</i> are, or how a <code>switch()</code>
+statement works, then turn back now and read a good book or tutorial on the C language first.
+
+</p><h2>Important notes</h2>
+
+Sometimes throughout the text I will indicate certain things are IMPORANT to read.  
+Because they screw up so many people, if you don't read it, you'll likely get caught
+too.  The first one is this: 
+
+<p>
+<b>The source provided in <a href="http://bit.ly/2ntziDq">the example ZIP file</a> is not optional!</b>   I don't include 
+all the code in the text itself, only that which is relevant to whatever I'm
+currently discussing.  In order to see how this code fits in with the rest of the
+program, you <i>must</i> take a look at the source provided in the ZIP file.
+
+</p><p>
+And here's the second one:
+
+</p><p>
+<b>Read the whole thing!</b>  If you have a question during one section of the tutorial
+just have a little patience and it might just be answered later on.  If you just can't
+stand the thought of not knowing, at least skim or search (yes computers can do that) 
+the rest of the document before asking the nice folks on IRC or by email.
+
+</p><p>
+Another thing to remember is that a question you might have about subject A might end up being 
+answered in a discussion of B or C, or maybe L.  So just look around a little.
+
+</p><p>
+Ok I think that's all the ranting I have to do for the moment, 
+lets try some actual code.
+
+</p><h2>The simplest Win32 program</h2>
+
+If you are a complete beginner lets make sure you are capable of compiling a
+basic windows application.  Slap the following code into your compiler and
+if all goes well you should get one of the lamest programs ever written.
+
+<p>
+Remember to compile this as C, not C++.  It probably doesn't matter, but since
+all the code here is C only, it makes sense to start off on the right track.
+In most cases, all this requires if you add your code to a <code>.c</code> file instead of
+a <code>.cpp</code> file.  If all of this hurts your head, just call the file <code>test.c</code> 
+and be done with it.
+
+</p><pre class="LIST">#include &lt;windows.h&gt;
+
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, 
+    LPSTR lpCmdLine, int nCmdShow)
+{
+    MessageBox(NULL, "Goodbye, cruel world!", "Note", MB_OK);
+    return 0;
+}
+</pre>
+
+<p>
+If that doesn't work, your first step is to read whatever errors you get and
+if you don't understand them, look them up in the help or whatever documents
+accompany your compiler.  <b>Make sure you have
+specified a Win32 GUI (NOT "Console") project/makefile/target, whatever applies
+to your compiler.</b>  Unfortunately I can't help much with this part either, as
+errors and how to fix them vary from compiler to compiler (and person to person).
+
+</p><p>
+You may get some warnings about you not using the parameters supplied to
+<code>WinMain()</code>.  This is OK.
+Now that we've established you can in fact compile a program, lets go through
+that little bit of code....
+
+</p><pre class="SNIP">int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
+   LPSTR lpCmdLine, int nCmdShow)
+</pre>
+
+<code>WinMain()</code> is windows equivalent of <code>main()</code> from DOS or UNIX.
+This is where your program starts execution.  The parameters are as follows:
+<dl>
+<dt><code>HINSTANCE hInstance</code></dt><dd>Handle to the programs executable module (the .exe file in memory)
+</dd><dt><code>HINSTANCE hPrevInstance</code></dt><dd>Always <code>NULL</code> for Win32 programs.
+</dd><dt><code>LPSTR lpCmdLine</code></dt><dd>The command line arguments as a single string. NOT including the program name.
+</dd><dt><code>int nCmdShow</code></dt><dd>An integer value which may be passed to <code>ShowWindow()</code>.  We'll get to this later.
+</dd></dl>
+
+<p>
+<code>hInstance</code> is used for things like loading resources and any other task which is
+performed on a per-module basis.  A module is either the EXE or a DLL loaded into your program.
+For most (if not all) of this tutorial, there will only be one module to worry about, the 
+EXE.
+
+</p><p>
+<code>hPrevInstance</code> used to be the handle to the previously run instance
+of your program (if any) in Win16.  This no longer applies.  In Win32 you ignore
+this parameter.
+
+</p><h3>Calling Conventions</h3>
+
+<p>
+<code>WINAPI</code> specifies the calling convention and is defined
+as <code>_stdcall</code>.  If you don't know what this means, don't worry about it
+as it will not really affect us for the scope of this tutorial.  Just remember that
+it's needed here.
+
+
+</p><h3>Win32 Data Types</h3>
+
+You will find that many of the normal keywords or
+types have windows specific definitions, <code>UINT</code> for <code>unsigned
+int</code>, <code>LPSTR</code> for <code>char*</code> etc... Which you
+choose is really up to you.  If you are more comfortable using <code>char*</code>
+instead of <code>LPSTR</code>, feel free to do so.  Just make sure that you 
+know what a type is before you substitute something else.
+
+<p>
+Just remember a few things and they will be easy to interpret.  An <code>LP</code>
+prefix stands for <i>Long Pointer</i>.  In Win32 the <i>Long</i> part is obsolete so
+don't worry about it.  And if you don't know what a pointer is, you can either 1) Go
+find a book or tutorial on C, or 2) just go ahead anyway and screw up a lot.  I'd
+really recommend #1, but most people go with #2 (I would :).  But don't say I didn't
+warn you.
+
+</p><p>
+Next thing is a <code>C</code> following a <code>LP</code> indicates a <code>const</code>
+pointer.  <code>LPCSTR</code> indicates a pointer to a const string, one that can not or 
+will not be modified.  <code>LPSTR</code> on the other hand is not <code>const</code> and
+may be changed.
+
+</p><p>
+You might also see a <code>T</code> mixed in there.  Don't worry about this for now, 
+unless you are intentionally working with <i>Unicode</i>, it means nothing.
+
+</p><p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7902540906210069";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel ="2865789986";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0000FF";
+google_color_text = "000000";
+google_color_url = "008000";
+//--></script>
+<script type="text/javascript" src="./Tutorial_ Getting Started_files/show_ads.js.download">
+</script><ins id="aswift_1_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./Tutorial_ Getting Started_files/saved_resource(1).html"></iframe></ins></ins>
+</p>
+
+            </td>
+        </tr>
+	<tr>
+		<td class="SECONDARYLEFT" width="120" align="center" valign="bottom">
+		&nbsp;
+		</td>
+	</tr>
+        </tbody></table>
+    </td>
+</tr>
+<tr>
+    <td class="PRIMARYFOOTER" height="20">Copyright © 1998-2017, Brook Miles 
+    (tut<a href="http://www.google.com/recaptcha/mailhide/d?k=01mhlzqbpR7rsPo28f9Xxd6Q==&amp;c=eJBL_p2Rumh5zFehQOYyuuI1ZxDhriZlEPiwT5pMeo4=" onclick="window.open(&#39;http://www.google.com/recaptcha/mailhide/d?k\07501mhlzqbpR7rsPo28f9Xxd6Q\75\75\46c\75eJBL_p2Rumh5zFehQOYyuuI1ZxDhriZlEPiwT5pMeo4\075&#39;, &#39;&#39;, &#39;toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300&#39;); return false;" title="Reveal this e-mail address">...</a>@winprog.org).  All rights reserved.
+</td>
+</tr>
+</tbody></table><iframe frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" style="display: none;" src="./Tutorial_ Getting Started_files/saved_resource(2).html"></iframe><iframe frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" style="display: none;" src="./Tutorial_ Getting Started_files/saved_resource(3).html"></iframe>
+
+<script type="text/javascript">
+<!--
+   var re = /\(nospam\)/ig;
+   var str;
+
+   for(i = 0;i < document.links.length;i++)
+   {
+      var link = document.links[i];
+	  var str = link.href;
+      link.href = str.replace(re, "@");
+
+	  str = link.innerHTML;
+      link.innerHTML = str.replace(re, "@");
+   }
+-->
+</script>
+
+
+
+</body></html>

@@ -1,0 +1,353 @@
+
+<!-- saved from url=(0049)http://www.winprog.org/tutorial/transparency.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><link href="./Transparent Bitmaps_files/style.css" rel="STYLESHEET" type="text/css">
+
+
+<title>Transparent Bitmaps</title>
+<script src="./Transparent Bitmaps_files/ca-pub-7902540906210069.js.download"></script><script type="text/javascript" async="" src="./Transparent Bitmaps_files/ga.js.download"></script><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26220310-1']);
+  _gaq.push(['_setDomainName', 'winprog.org']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+
+<body>
+<table class="PRIMARY" width="100%" height="100%" cellspacing="0" cellpadding="0" id="Table1">
+<tbody><tr height="85">
+    <td class="PRIMARYHEADER" align="left" valign="top">
+		<h1>theForger's Win32 API Programming Tutorial</h1>
+    </td>
+</tr>
+<tr>
+    <td>
+        <table width="100%" height="100%" class="SECONDARY" cellspacing="0" cellpadding="3" id="Table2">
+        <tbody><tr>
+            <td class="SECONDARYLEFT" align="left" width="200" valign="top">
+				<p><a href="http://www.winprog.org/tutorial/">Home</a></p>
+				Basics
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/start.html">Getting Started</a>
+					</li><li><a href="http://www.winprog.org/tutorial/simple_window.html">A Simple Window</a>
+					</li><li><a href="http://www.winprog.org/tutorial/window_click.html">Handling Messages</a>
+					</li><li><a href="http://www.winprog.org/tutorial/message_loop.html">The Message Loop</a>
+					</li><li><a href="http://www.winprog.org/tutorial/resources.html">Using Resources</a>
+					</li><li><a href="http://www.winprog.org/tutorial/menus.html">Menus and Icons</a>
+					</li><li><a href="http://www.winprog.org/tutorial/dialogs.html">Dialog Boxes</a>
+					</li><li><a href="http://www.winprog.org/tutorial/modeless_dialogs.html">Modeless Dialogs</a>
+					</li><li><a href="http://www.winprog.org/tutorial/controls.html">Standard Controls</a>
+					</li><li><a href="http://www.winprog.org/tutorial/dlgfaq.html">Dialog FAQ</a>
+					</li></ol>
+				Creating a simple application
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/app_one.html">Creating controls at runtime</a>
+					</li><li><a href="http://www.winprog.org/tutorial/app_two.html">Files and the common dialogs</a>
+					</li><li><a href="http://www.winprog.org/tutorial/app_three.html">Tool and Status bars</a>
+					</li><li><a href="http://www.winprog.org/tutorial/app_four.html">Multiple Document Interface</a>
+					</li></ol> 
+				Graphics Device Interface
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/bitmaps.html">Bitmaps and Device Contexts</a>
+					</li><li><a href="http://www.winprog.org/tutorial/transparency.html">Transparency</a>
+					</li><li><a href="http://www.winprog.org/tutorial/animation.html">Timers and Animation</a>
+					</li><li><a href="http://www.winprog.org/tutorial/fonts.html">Text, Fonts and Colours</a>
+					</li></ol>
+				Tools and Documentation
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/references.html">References</a>
+					</li><li><a href="http://www.winprog.org/tutorial/msvc.html">Free Visual C++</a>
+					</li></ol>
+				Appendices
+					<ol type="A">
+					<li><a href="http://www.winprog.org/tutorial/errors.html">Solutions to Common Errors</a>
+					</li><li><a href="http://www.winprog.org/tutorial/apivsmfc.html">API vs. MFC</a>
+					</li><li><a href="http://www.winprog.org/tutorial/resnotes.html">Resource file notes</a>
+					</li></ol>
+            </td>
+            <td class="SECONDARYMAIN" align="left" valign="top" rowspan="2">
+                
+
+
+<h1>Transparent Bitmaps</h1>
+
+<p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7902540906210069";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+//2007-07-29: Tutorial Page Title
+google_ad_channel = "8265092538";
+//-->
+</script>
+<script type="text/javascript" src="./Transparent Bitmaps_files/show_ads.js.download">
+</script><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./Transparent Bitmaps_files/saved_resource.html"></iframe></ins></ins>
+</p>
+
+
+
+<p>Example: bmp_two</p>
+<img src="./Transparent Bitmaps_files/bmp_two.gif" alt="[images/bmp_two.gif]" align="right">
+
+<h2>Transparency</h2>
+
+Giving bitmaps the appearance of having transparent sections is quite simple, and involves
+the use of a black and white <i>Mask</i> image in addition to the colour image that we want
+to look transparent.
+
+<p>
+The following conditions need to be met for the effect to work correctly:  First off, <b>the colour
+image must be black in all areas that we want to display as transparent</b>.  And second, 
+<b>the mask image must be white in the areas we want transparent</b>, and black elsewhere.
+The colour and mask images are displayed as the two left most images in the example picture on this page.
+
+</p><h3>BitBlt operations</h3>
+
+<p>
+How does this get us transparency?  First we <code>BitBlt()</code> the mask image using the <code>SRCAND</code> 
+operation as the last parameter, and then on top of that we <code>BitBlt()</code> the colour image using 
+the <code>SRCPAINT</code> operation.  The result is that the areas we wanted transparent don't change
+on the destination <code>HDC</code> while the rest of the image is drawn as usual.
+
+</p><pre class="SNIP">    SelectObject(hdcMem, g_hbmMask);
+    BitBlt(hdc, 0, 0, bm.bmWidth, bm.bmHeight, hdcMem, 0, 0, SRCAND);
+
+    SelectObject(hdcMem, g_hbmBall);
+    BitBlt(hdc, 0, bm.bmHeight, bm.bmWidth, bm.bmHeight, hdcMem, 0, 0, SRCPAINT);
+</pre>
+
+<p>
+Pretty simple eh?  Fortunately it is, but one question remains... where does the mask come from?
+
+There are basically two ways to get the mask...  
+
+</p><ul>
+<li>Make it yourself in whatever graphics program
+you made the colour bitmap in, and this is a reasonable solution if you are using a limited number of 
+graphics in your program.  This way you can just add the mask resource to your program and load it with 
+<code>LoadBitmap()</code>.
+</li><li>Generate it when your program runs, by selecting one colour in your original image to be your "transparent" colour, and
+create a mask that is white everywhere that colour exists, and black everywhere else.
+</li></ul>
+
+<p>
+Since the first one is nothing new, you should be able to do things that way yourself if you want to.  The second
+way involves from <code>BitBlt()</code> trickery, and so I will show one way of accomplishing this.  
+
+</p><h3>Mask Creation</h3>
+
+<p>
+The simplest way to do it, would be to loop through every pixel on the colour image, check it's value and then set the corresponding
+pixel on the mask to black or white... <code>SetPixel()</code> is a <i>very</i> slow way to draw images however,
+and it's not really practical.
+
+</p><p>
+A much more efficient way involves using the way <code>BitBlt()</code> converts from colour images to black and
+white.  If you <code>BitBlt()</code> (using <code>SRCCOPY</code>) from an <code>HDC</code> holding a colour image into an <code>HDC</code> holding
+a black and white image, it will check what colour is set as the <i>Background Colour</i> on the colour image, and
+set all of those pixels to <b>White</b>, any pixel that is not the background colour will end up <b>Black</b>.
+
+</p><p>
+This works perfectly to our advantage, since all we need to do is set the background colour to the colour we want
+transparent, and <code>BitBlt()</code> from the colour image to the mask image.  Note that <b>this only works with
+a mask bitmap that is monochrome</b> (black and white)... that is bitmaps with a bit depth of 1 bit per pixel.
+If you try it with a colour image that only has black and white pixels, but the bitmap itself is greater than 1 bit (say
+16 or 24 bit) then it won't work.
+
+</p><p>
+Remember the first condition for succesful masking above?  It was that the colour image needs to be black everywhere
+we want transparent.  Since the bitmap I used in this example already meets that condition it doesn't really need anything
+special done, but if you're going to use this code for another image that has a different colour that you want transparent
+(hot pink is a common choice) then we need to take a second step, and that is use the mask we just created to alter 
+the original image, so that everywhere we want transparent is black.  It's ok if other places are black too, because
+they aren't white on the mask, they won't end up transparent.  We can accomplish this by <code>BitBlt()</code>ing from
+the new mask to the original colour image, using the <code>SRCINVERT</code> operation, which sets all the areas that
+are white in the mask to black in the colour image.
+
+</p><p>
+This is all a bit of a complex process, and so it's nice to have a handy utility function that does this all for us,
+and here it is:
+
+</p><pre class="SNIP">HBITMAP CreateBitmapMask(HBITMAP hbmColour, COLORREF crTransparent)
+{
+    HDC hdcMem, hdcMem2;
+    HBITMAP hbmMask;
+    BITMAP bm;
+
+    // Create monochrome (1 bit) mask bitmap.  
+
+    GetObject(hbmColour, sizeof(BITMAP), &amp;bm);
+    hbmMask = CreateBitmap(bm.bmWidth, bm.bmHeight, 1, 1, NULL);
+
+    // Get some HDCs that are compatible with the display driver
+
+    hdcMem = CreateCompatibleDC(0);
+    hdcMem2 = CreateCompatibleDC(0);
+
+    SelectBitmap(hdcMem, hbmColour);
+    SelectBitmap(hdcMem2, hbmMask);
+
+    // Set the background colour of the colour image to the colour
+    // you want to be transparent.
+    SetBkColor(hdcMem, crTransparent);
+
+    // Copy the bits from the colour image to the B+W mask... everything
+    // with the background colour ends up white while everythig else ends up
+    // black...Just what we wanted.
+
+    BitBlt(hdcMem2, 0, 0, bm.bmWidth, bm.bmHeight, hdcMem, 0, 0, SRCCOPY);
+
+    // Take our new mask and use it to turn the transparent colour in our
+    // original colour image to black so the transparency effect will
+    // work right.
+    BitBlt(hdcMem, 0, 0, bm.bmWidth, bm.bmHeight, hdcMem2, 0, 0, SRCINVERT);
+
+    // Clean up.
+
+    DeleteDC(hdcMem);
+    DeleteDC(hdcMem2);
+
+    return hbmMask;
+}
+</pre>
+
+NOTE: This function call <code>SelectObject()</code> to temporarily select the colour bitmap we pass it into an
+<code>HDC</code>.  A bitmap can't be selected into more than one <code>HDC</code> at a time, 
+so <b>make sure the bitmap isn't selected in to another <code>HDC</code></b> when you call this function or it will fail.
+
+Now that we have our handy dandy function, we can create a mask from the original picture as soon as we load it:
+
+<pre class="SNIP">    case WM_CREATE:
+        g_hbmBall = LoadBitmap(GetModuleHandle(NULL), MAKEINTRESOURCE(IDB_BALL));
+        if(g_hbmBall == NULL)
+            MessageBox(hwnd, "Could not load IDB_BALL!", "Error", MB_OK | MB_ICONEXCLAMATION);
+
+        g_hbmMask = CreateBitmapMask(g_hbmBall, RGB(0, 0, 0));
+        if(g_hbmMask == NULL)
+            MessageBox(hwnd, "Could not create mask!", "Error", MB_OK | MB_ICONEXCLAMATION);
+    break;
+</pre>
+
+<p>
+The second parameter is of course the colour from the original image that we want to be transparent, in this case black.
+
+</p><h2>How does all this work?</h2>
+
+.. you may be asking.  Well hopefully your experience with C or C++ means that you understand binary operations such
+as OR, XOR, AND, NOT and so on.  I'm not going to explain this process completely, but I will try to show how I used
+it for this example.  If my explanation isn't clear enough (which it's bound to not be), reading up on binary
+operations should help you understand it.  Understanding it isn't critical for using it right now, and you can
+just get away with trusting that it works if you want.
+
+<h3>SRCAND</h3>
+
+The <code>SRCAND</code> raster operation, or ROP code for <code>BitBlt()</code> means to combine the bits using <code>AND</code>.
+That is: only bits that are set both in the source AND the destination get set in the final result.  We use this with our
+mask to set to black all the pixels that will eventually have colour on them from the colour image.  The mask image
+has black (which in binary is all 0's) where we want colour, and white (all 1's) where we want transparency.  Any value
+combined with 0 using AND is 0, and therefor all the pixels that are black in the mask are set to 0 in the result and end up black as well.  
+Any value that is combined with 1 using AND is left unaffected, so if it was 1 to begin with it stays 1, and if it was 0 to begin
+with it stays 0... therefor all the pixels that are white in our mask, are completely unaffected after the 
+<code>BitBlt()</code> call.  The result is the top right image in the example picture.
+
+<h3>SRCPAINT</h3>
+
+<code>SRCPAINT</code> uses the OR operation, so if either (or both) of the bits are set, then they will be set in the
+result.  We use this on the colour image.  When the black (transparent) part of our colour image is combined with
+the data on the destination using OR, the result is that the data is untouched, because any value combined with 0 using 
+the OR operation is left unaffected.
+
+<p>
+However, the rest of our colour image isn't black, and if the destination also isn't black, then we get a combination
+of the source and destination colours, the result you can see in the second ball on the second row in the example picture.
+This is the whole reason for using the mask to set the pixels we want to colour to black first, so that when we use
+OR with the colour image, the coloured pixels don't get mixed up with whatever is underneath them.
+
+</p><h3>SRCINVERT</h3>
+
+This is the <code>XOR</code> operation used to set the transparent colour in our original image to black (if it isn't black
+already).  Combining a black pixel from the mask with a non-background colour pixel in the destination leaves it
+untouched, while combining a white pixel from the mask (which remember we generated by setting a particular colour
+as the "background") with the background colour pixel on the destination cancels it out, and sets it to black.  
+
+<p>
+This is all a little GDI mojo that depends on it's colour vs. monochrome handling, and it hurts my head to think about it 
+too much, but it really makes sense... honest.
+
+</p><h2>Example</h2>
+
+The example code in the project bmp_two that goes along with this section contains the code for the example picture 
+on this page.  It consists of first drawing the mask and the colour image exactly as they are using <code>SRCCOPY</code>,
+then using each one alone with the <code>SRCAND</code> and <code>SRCPAINT</code> operations respectively, and finally
+combining them to produce the final product.
+
+<p>
+The background in this example is set to gray to make the transparency more obvious, as using these operations
+on a white or black background makes it hard to tell if they're actually working or not.
+
+</p><p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7902540906210069";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel ="2865789986";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0000FF";
+google_color_text = "000000";
+google_color_url = "008000";
+//--></script>
+<script type="text/javascript" src="./Transparent Bitmaps_files/show_ads.js.download">
+</script><ins id="aswift_1_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./Transparent Bitmaps_files/saved_resource(1).html"></iframe></ins></ins>
+</p>
+
+            </td>
+        </tr>
+	<tr>
+		<td class="SECONDARYLEFT" width="120" align="center" valign="bottom">
+		&nbsp;
+		</td>
+	</tr>
+        </tbody></table>
+    </td>
+</tr>
+<tr>
+    <td class="PRIMARYFOOTER" height="20">Copyright © 1998-2017, Brook Miles 
+    (tut<a href="http://www.google.com/recaptcha/mailhide/d?k=01mhlzqbpR7rsPo28f9Xxd6Q==&amp;c=eJBL_p2Rumh5zFehQOYyuuI1ZxDhriZlEPiwT5pMeo4=" onclick="window.open(&#39;http://www.google.com/recaptcha/mailhide/d?k\07501mhlzqbpR7rsPo28f9Xxd6Q\75\75\46c\75eJBL_p2Rumh5zFehQOYyuuI1ZxDhriZlEPiwT5pMeo4\075&#39;, &#39;&#39;, &#39;toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300&#39;); return false;" title="Reveal this e-mail address">...</a>@winprog.org).  All rights reserved.
+</td>
+</tr>
+</tbody></table><iframe frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" style="display: none;" src="./Transparent Bitmaps_files/saved_resource(2).html"></iframe><iframe frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" style="display: none;" src="./Transparent Bitmaps_files/saved_resource(3).html"></iframe>
+
+<script type="text/javascript">
+<!--
+   var re = /\(nospam\)/ig;
+   var str;
+
+   for(i = 0;i < document.links.length;i++)
+   {
+      var link = document.links[i];
+	  var str = link.href;
+      link.href = str.replace(re, "@");
+
+	  str = link.innerHTML;
+      link.innerHTML = str.replace(re, "@");
+   }
+-->
+</script>
+
+
+
+</body></html>

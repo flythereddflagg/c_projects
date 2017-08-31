@@ -1,0 +1,440 @@
+
+<!-- saved from url=(0042)http://www.winprog.org/tutorial/fonts.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><link href="./Text and Fonts_files/style.css" rel="STYLESHEET" type="text/css">
+
+
+<title>Text and Fonts</title>
+<script src="./Text and Fonts_files/ca-pub-7902540906210069.js.download"></script><script type="text/javascript" async="" src="./Text and Fonts_files/ga.js.download"></script><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26220310-1']);
+  _gaq.push(['_setDomainName', 'winprog.org']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+
+<body>
+<table class="PRIMARY" width="100%" height="100%" cellspacing="0" cellpadding="0" id="Table1">
+<tbody><tr height="85">
+    <td class="PRIMARYHEADER" align="left" valign="top">
+		<h1>theForger's Win32 API Programming Tutorial</h1>
+    </td>
+</tr>
+<tr>
+    <td>
+        <table width="100%" height="100%" class="SECONDARY" cellspacing="0" cellpadding="3" id="Table2">
+        <tbody><tr>
+            <td class="SECONDARYLEFT" align="left" width="200" valign="top">
+				<p><a href="http://www.winprog.org/tutorial/">Home</a></p>
+				Basics
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/start.html">Getting Started</a>
+					</li><li><a href="http://www.winprog.org/tutorial/simple_window.html">A Simple Window</a>
+					</li><li><a href="http://www.winprog.org/tutorial/window_click.html">Handling Messages</a>
+					</li><li><a href="http://www.winprog.org/tutorial/message_loop.html">The Message Loop</a>
+					</li><li><a href="http://www.winprog.org/tutorial/resources.html">Using Resources</a>
+					</li><li><a href="http://www.winprog.org/tutorial/menus.html">Menus and Icons</a>
+					</li><li><a href="http://www.winprog.org/tutorial/dialogs.html">Dialog Boxes</a>
+					</li><li><a href="http://www.winprog.org/tutorial/modeless_dialogs.html">Modeless Dialogs</a>
+					</li><li><a href="http://www.winprog.org/tutorial/controls.html">Standard Controls</a>
+					</li><li><a href="http://www.winprog.org/tutorial/dlgfaq.html">Dialog FAQ</a>
+					</li></ol>
+				Creating a simple application
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/app_one.html">Creating controls at runtime</a>
+					</li><li><a href="http://www.winprog.org/tutorial/app_two.html">Files and the common dialogs</a>
+					</li><li><a href="http://www.winprog.org/tutorial/app_three.html">Tool and Status bars</a>
+					</li><li><a href="http://www.winprog.org/tutorial/app_four.html">Multiple Document Interface</a>
+					</li></ol> 
+				Graphics Device Interface
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/bitmaps.html">Bitmaps and Device Contexts</a>
+					</li><li><a href="http://www.winprog.org/tutorial/transparency.html">Transparency</a>
+					</li><li><a href="http://www.winprog.org/tutorial/animation.html">Timers and Animation</a>
+					</li><li><a href="http://www.winprog.org/tutorial/fonts.html">Text, Fonts and Colours</a>
+					</li></ol>
+				Tools and Documentation
+					<ol>
+					<li><a href="http://www.winprog.org/tutorial/references.html">References</a>
+					</li><li><a href="http://www.winprog.org/tutorial/msvc.html">Free Visual C++</a>
+					</li></ol>
+				Appendices
+					<ol type="A">
+					<li><a href="http://www.winprog.org/tutorial/errors.html">Solutions to Common Errors</a>
+					</li><li><a href="http://www.winprog.org/tutorial/apivsmfc.html">API vs. MFC</a>
+					</li><li><a href="http://www.winprog.org/tutorial/resnotes.html">Resource file notes</a>
+					</li></ol>
+            </td>
+            <td class="SECONDARYMAIN" align="left" valign="top" rowspan="2">
+                
+
+
+<h1>Text and Fonts</h1>
+
+<p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7902540906210069";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+//2007-07-29: Tutorial Page Title
+google_ad_channel = "8265092538";
+//-->
+</script>
+<script type="text/javascript" src="./Text and Fonts_files/show_ads.js.download">
+</script><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./Text and Fonts_files/saved_resource.html"></iframe></ins></ins>
+</p>
+
+
+
+<p>Example: font_one</p>
+<img src="./Text and Fonts_files/font_one.gif" alt="[images/font_one.gif]" align="right">
+
+<h2>Loading Fonts</h2>
+
+The Win32 GDI has some remarkable capabilites for dealing with vastly different typefaces,
+styles, languages and characters sets.  One of the drawbacks of this is that dealing with
+fonts can look rather intimidating to the newcomer.  <code>CreateFont()</code>, the primary
+API when it comes to fonts, has 14 parameters for specifying height, style, weight, family,
+and various other attributes.
+
+<p>
+Fortunately, it's not really has hard as it might appear, and a large portion of the work
+involved is taken care of my sensible default values.  All but 2 of the parameters to 
+<code>CreateFont()</code> can be set to <code>0</code> or <code>NULL</code>, and the system
+will simply use a default value giving you a plain ordinary font.
+
+</p><p>
+<code>CreateFont()</code> creates an <code>HFONT</code>, a handle to a <i>Logical Font</i> in memory.  The data held by this 
+handle can be retreived into a <code>LOGFONT</code> structure using <code>GetObject()</code> just
+as a <code>BITMAP</code> struct can be filled from an <code>HBITMAP</code>.  
+
+</p><p>
+The members of the <code>LOGFONT</code> are identical to the parameters to <code>CreateFont()</code> and
+for convenience you can create a font directly from an existing <code>LOGFONT</code> structure
+using <code>CreateFontIndirect()</code>.
+This is very handy, since it makes it simple to create a new font from an existing font handle
+when you only want to alter certain aspects of it.  Use <code>GetObject()</code> to fill a <code>LOGFONT</code>,
+alter the members that you wish, and create a new font with <code>CreateFontIndirect()</code>.
+
+</p><pre class="SNIP">    HFONT hf;
+    HDC hdc;
+    long lfHeight;
+    
+    hdc = GetDC(NULL);
+    lfHeight = -MulDiv(12, GetDeviceCaps(hdc, LOGPIXELSY), 72);
+    ReleaseDC(NULL, hdc);
+
+    hf = CreateFont(lfHeight, 0, 0, 0, 0, TRUE, 0, 0, 0, 0, 0, 0, 0, "Times New Roman");
+
+    if(hf)
+    {
+        DeleteObject(g_hfFont);
+        g_hfFont = hf;
+    }
+    else
+    {
+        MessageBox(hwnd, "Font creation failed!", "Error", MB_OK | MB_ICONEXCLAMATION);
+    }                   
+</pre>
+
+<p>
+This is the code used to create the font in the example image.  This is <i>Times New Roman</i> at <i>12 Point</i> with
+the <i>Italics</i> style set.  The italics flag is the 6th parameter to <code>CreateFont()</code> which you can 
+see we have set to <code>TRUE</code>.  The name of the font we want to use is the last parameter.
+
+</p><p>
+The one bit of trickery in this code is the value used for the size of the font, the <code>lfHeight</code> parameter to 
+<code>CreateFont()</code>.  Usually people are used to working with <i>Point</i> sizes, Size 10, Size 12, etc... when 
+dealing with fonts.  <code>CreateFont()</code> however doesn't accept point sizes, it wants <code>Logical Units</code>
+which are different on your screen than they are on your Printer, and even between Printers and screens.  
+
+</p><p>
+The reason
+this situation exists is because the resolution of different devices is so vastly different... Printers can easily
+display 600 to 1200 pixels per inch, while a screen is lucky to get 200... if you used the same sized font on a printer
+as on a screen, you likely wouldn't even be able to see individual letters.
+
+</p><p>
+All we have to do is convert from the point size we want, into the appropriate logical size for the device.  In this
+case the device is the screen, so we get the <code>HDC</code> to the screen, and get the number of logical pixels per inch
+using <code>GetDeviceCaps()</code> and slap this into the formula so generously provided in MSDN which uses 
+<code>MulDiv()</code> to convert from our pointsize of <code>12</code> to the correct logical size that <code>CreateFont()</code>
+expects.  We store this in <code>lfHeight</code> and pass it as the first parameter to <code>CreateFont()</code>.
+
+</p><h3>Default Fonts</h3>
+
+When you first call <code>GetDC()</code> to get the <code>HDC</code> to your window, the
+default font that is selected into it is <i>System</i>, which to be honest isn't all that
+attractive.  The simplest way to get a reasonable looking font to work with (without going through the <code>CreateFont()</code>
+hassle) is to call 
+<code>GetStockObject()</code> and ask for the <code>DEFAULT_GUI_FONT</code>.  
+
+<p>
+This is
+a system object and you can get it as many times as you want without leaking memory,
+and you can call <code>DeleteObject()</code> on it which won't do anything, which is good
+because now you don't need to keep track of whether your font is one from <code>CreateFont()</code> or
+<code>GetStockObject()</code> before trying to free it.
+
+</p><h2>Drawing Text</h2>
+
+Now that we have a handy-dandy font, how do we get some text on the screen?  This is assuming that we don't
+just want to use an Edit or Static control.
+
+<p>
+Your basic options are <code>TextOut()</code> and <code>DrawText()</code>.  <code>TextOut()</code> is simpler,
+but has less options and doesn't do word wrapping or alignment for you.
+
+</p><pre class="SNIP">    char szSize[100];
+    char szTitle[] = "These are the dimensions of your client area:";
+    HFONT hfOld = SelectObject(hdc, hf);
+
+    SetBkColor(hdc, g_rgbBackground);
+    SetTextColor(hdc, g_rgbText);
+
+    if(g_bOpaque)
+    {
+        SetBkMode(hdc, OPAQUE);
+    }
+    else
+    {
+        SetBkMode(hdc, TRANSPARENT);
+    }
+
+    DrawText(hdc, szTitle, -1, prc, DT_WORDBREAK);
+
+    wsprintf(szSize, "{%d, %d, %d, %d}", prc-&gt;left, prc-&gt;top, prc-&gt;right, prc-&gt;bottom);
+    DrawText(hdc, szSize, -1, prc, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
+
+    SelectObject(hdc, hfOld);
+</pre>
+
+<p>
+First thing we do is use <code>SelectObject()</code> to get the font we want to use into our <code>HDC</code> and 
+ready for drawing.  All future text operations will use this font untill another one is selected in.
+
+</p><p>
+Next we set the Text and Background colours.  Setting the background colour doesn't actually make the <i>whole</i>
+background this colour, it only affects certain operations (text being one of them) that use the background colour to
+draw with.  This is also dependant on the current <i>Background Mode</i>.  If it is set to <code>OPAQUE</code> (the default)
+then any text drawn is filled in behing with the background colour.  If it is set to <code>TRANSPARENT</code> then
+text is drawn without a background and whatever is behind will show through and in this case the background colour
+has no effect.
+
+</p><p>
+Now we actually draw the text using <code>DrawText()</code>, we pass in the <code>HDC</code> to use and the string
+to draw.  The 3rd parameter is the length of the string, but we've passed -1 because <code>DrawText()</code> is
+smart enough that it will figure out how long the text is itself.  In the 4th parameter we pass in <code>prc</code>,
+the pointer to the client <code>RECT</code>.  <code>DrawText()</code> will draw inside this rectangle based on
+the other flags that you give it.
+
+</p><p>
+In the first call, we specify <code>DT_WORDBREAK</code>, which defaults to aligned to the top left, and will
+wrap the text it draws automatically at the edge of the rectangle... very useful.
+
+</p><p>
+For the second call, we're only printing a single line without wrapping, and we want it to be centered horizontally as well
+as vertically (which <code>DrawText()</code> will do only when drawing a single line).
+
+</p><h4>Client Redraw</h4>
+
+Just a note about the example program... when the <code>WNDCLASS</code> is registered I have set the 
+<code>CS_VREDRAW</code> and <code>CS_HREDRAW</code> class styles.  This causes the entire client
+area to be redrawn if the window is resized, whereas the default is to only redraw the parts that have
+changed.  That looks really bad since the centered text moves around when you resize and it doesn't update
+like you'd expect.
+
+
+<h2>Choosing Fonts</h2>
+
+In general, any program that deals with fonts will want to let the user choose their own font, as well
+as the colour and style attribute to use when displaying it.
+
+<p>
+Like the common dialogs for getting open and save file names, there is a common dialog for choosing a font.
+This is, oddly enough, called <code>ChooseFont()</code> and it works with the <code>CHOOSEFONT</code> structure
+for you to set the defaults it should start with as well as returning the final result of the users selection.
+
+</p><pre class="SNIP">HFONT g_hfFont = GetStockObject(DEFAULT_GUI_FONT);
+COLORREF g_rgbText = RGB(0, 0, 0);
+</pre>
+<pre class="SNIP">void DoSelectFont(HWND hwnd)
+{
+    CHOOSEFONT cf = {sizeof(CHOOSEFONT)};
+    LOGFONT lf;
+
+    GetObject(g_hfFont, sizeof(LOGFONT), &amp;lf);
+
+    cf.Flags = CF_EFFECTS | CF_INITTOLOGFONTSTRUCT | CF_SCREENFONTS;
+    cf.hwndOwner = hwnd;
+    cf.lpLogFont = &amp;lf;
+    cf.rgbColors = g_rgbText;
+
+    if(ChooseFont(&amp;cf))
+    {
+        HFONT hf = CreateFontIndirect(&amp;lf);
+        if(hf)
+        {
+            g_hfFont = hf;
+        }
+        else
+        {
+            MessageBox(hwnd, "Font creation failed!", "Error", MB_OK | MB_ICONEXCLAMATION);
+        }
+
+        g_rgbText = cf.rgbColors;
+    }
+}
+</pre>
+
+<p>
+The <code>hwnd</code> in this call is simply the window you want to use as the parent for the font dialog.
+
+</p><p>
+The easiest way to use this dialog is in conjunction with an existing <code>LOGFONT</code> structure, which
+is most likely from whichever <code>HFONT</code> you are currently using.  We set the <code>lpLogFont</code>
+member of the structure to point to the <code>LOGFONT</code> that we just filled with our current information
+and also added the <code>CF_INITTOLOGFONTSTRUCT</code> flag so that <code>ChooseFont()</code> knows to
+use this member.  The flag <code>CF_EFFECTS</code> tells <code>ChooseFont()</code> to allow the user
+to select a colour, as well as Underline and Strikeout attributes.
+
+</p><p>
+Oddly enough, the Bold and Italics styles don't count as effects, they are considered part of the font itself
+and in fact some fonts only come in Bold or Italics.  If you want to check or prevent the user from selecting
+a bold or italic font you can check the <code>lfWeight</code> and <code>lfItalic</code> members of the 
+<code>LOGFONT</code> respectively, after the user has made their selection.  You can then prompt the user
+to make another selection or something change the members before calling <code>CreateFontIndirect()</code>.
+
+</p><p>
+The colour of a font is not associated with an <code>HFONT</code>, and therefor must be stored seperately,
+the <code>rgbColors</code> member of the <code>CHOOSEFONT</code> struct is used both to pass in the initial
+colour and retreive the new colour afterward.
+
+</p><p>
+<code>CF_SCREENFONTS</code> indicates that we want fonts designed to work on the screen, as opposed to fonts that
+are designed for printers.  Some support both, some only one or the other.  Depending on what you're going
+to be using the font for, this and many other flags can be found in MSDN to limit exactly which fonts you
+want the user to be able to select.
+
+</p><h2>Choosing Colours</h2>
+
+In order to allow the user to change just the colour of the font, or to let them pick a new colour
+for anything at all, there is the <code>ChooseColor()</code> common dialog.  This is the code
+used to allow the user to select the background colour in the example program.
+
+<pre class="SNIP">COLORREF g_rgbBackground = RGB(255, 255, 255);
+COLORREF g_rgbCustom[16] = {0};
+</pre>
+<pre class="SNIP">void DoSelectColour(HWND hwnd)
+{
+    CHOOSECOLOR cc = {sizeof(CHOOSECOLOR)};
+
+    cc.Flags = CC_RGBINIT | CC_FULLOPEN | CC_ANYCOLOR;
+    cc.hwndOwner = hwnd;
+    cc.rgbResult = g_rgbBackground;
+    cc.lpCustColors = g_rgbCustom;
+
+    if(ChooseColor(&amp;cc))
+    {
+        g_rgbBackground = cc.rgbResult;
+    }
+}
+</pre>
+
+<p>
+This is fairly straightforward, again we're using the <code>hwnd</code> parameter as the parent to the dialog.
+The <code>CC_RGBINIT</code> parameter says to start off with the colour we pass in through the <code>rgbResult</code>
+member, which is also where we get the colour the user selected when the dialog closes.
+
+</p><p>
+The <code>g_rgbCustom</code> array of 16 <code>COLORREF</code>s is required to store any values the user decides
+to put into the custom colour table on the dialog.  You could potentially store these values somewhere like the
+registry, otherwise they will simply be lost when your program is closed.  This parameter is not optional.
+
+</p><h2>Control Fonts</h2>
+
+Something else you might want to do at some point is change the font on the controls on your
+dialog or window.  This is usually the case when using <code>CreateWindow()</code> to create
+controls as we've done in previous examples.  Controls like windows use System by default,
+so we used <code>WM_SETFONT</code> to set a new font handle (from <code>GetStockObject()</code>)
+for the control to use.  You can use this method with fonts you create from <code>CreateFont()</code>
+as well.  Simply pass the font handle as <code>wParam</code> and set <code>lParam</code> to 
+<code>TRUE</code> to make the control redraw.
+
+<p>
+I've done this in previous examples, but it makes sense to mention it here because it's 
+relevant and very short:
+
+</p><pre class="SNIP">    SendDlgItemMessage(hwnd, IDC_OF_YOUR_CONTROL, WM_SETFONT, (WPARAM)hfFont, TRUE);
+</pre>
+
+<p>
+Where <code>hfFont</code> is of course the <code>HFONT</code> you want to use, and 
+<code>IDC_OF_YOUR_CONTROL</code> is the ID of whichever control you want to change the font of.
+
+</p><p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7902540906210069";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel ="2865789986";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0000FF";
+google_color_text = "000000";
+google_color_url = "008000";
+//--></script>
+<script type="text/javascript" src="./Text and Fonts_files/show_ads.js.download">
+</script><ins id="aswift_1_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./Text and Fonts_files/saved_resource(1).html"></iframe></ins></ins>
+</p>
+
+            </td>
+        </tr>
+	<tr>
+		<td class="SECONDARYLEFT" width="120" align="center" valign="bottom">
+		&nbsp;
+		</td>
+	</tr>
+        </tbody></table>
+    </td>
+</tr>
+<tr>
+    <td class="PRIMARYFOOTER" height="20">Copyright © 1998-2017, Brook Miles 
+    (tut<a href="http://www.google.com/recaptcha/mailhide/d?k=01mhlzqbpR7rsPo28f9Xxd6Q==&amp;c=eJBL_p2Rumh5zFehQOYyuuI1ZxDhriZlEPiwT5pMeo4=" onclick="window.open(&#39;http://www.google.com/recaptcha/mailhide/d?k\07501mhlzqbpR7rsPo28f9Xxd6Q\75\75\46c\75eJBL_p2Rumh5zFehQOYyuuI1ZxDhriZlEPiwT5pMeo4\075&#39;, &#39;&#39;, &#39;toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300&#39;); return false;" title="Reveal this e-mail address">...</a>@winprog.org).  All rights reserved.
+</td>
+</tr>
+</tbody></table><iframe frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" style="display: none;" src="./Text and Fonts_files/saved_resource(2).html"></iframe><iframe frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" style="display: none;" src="./Text and Fonts_files/saved_resource(3).html"></iframe>
+
+<script type="text/javascript">
+<!--
+   var re = /\(nospam\)/ig;
+   var str;
+
+   for(i = 0;i < document.links.length;i++)
+   {
+      var link = document.links[i];
+	  var str = link.href;
+      link.href = str.replace(re, "@");
+
+	  str = link.innerHTML;
+      link.innerHTML = str.replace(re, "@");
+   }
+-->
+</script>
+
+
+
+</body></html>
