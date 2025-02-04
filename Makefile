@@ -1,6 +1,7 @@
 CC = gcc
 CFLAGS = -g -Wall
 SRC = main
+INCLUDE = ./include
 
 .PHONY: all build run preprocess clean
 
@@ -8,7 +9,7 @@ all: build run
 
 
 build:
-	$(CC) $(CFLAGS) $(SRC).c -o $(SRC).exe
+	$(CC) $(CFLAGS) $(SRC).c -o $(SRC).exe -I$(INCLUDE)
 
 
 run:
@@ -16,7 +17,7 @@ run:
 
 
 preprocess:
-	$(CC) $(CFLAGS) -E $(SRC).c -o $(SRC).preprocess
+	$(CC) $(CFLAGS) -E $(SRC).c -o $(SRC).preprocess -I$(INCLUDE)
 
 
 clean:
