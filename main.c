@@ -47,9 +47,13 @@ void itoa(int n, char s[]){
 
 
 int main(){
+    // 3-4 solution
+    // this occurs because a postivie integer only goes up to max val - 1
+    // to fix use and u
     int t1 = 0b10000000000000000000000000000000;
     char s[90] = "";
     itoa(t1, s);
     printf("%d : '%s'\n", t1, s);
+
     return 0;
 }
