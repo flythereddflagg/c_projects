@@ -28,6 +28,9 @@ signed exponent.
  }
 
  int main(){
-
+    char test1[] = "1.223049"; 
+    printf("%s: %f\n", test1, atof(test1));
+    char test2[] = "1.2e2"; 
+    printf("%s: %f\n", test2, atof(test2));
     return 0;
 }
