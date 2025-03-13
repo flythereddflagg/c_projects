@@ -1,54 +1,33 @@
 /*
-Exercise 4-1. Write the function strindex(s,t) which returns the position 
-of the rightmost occurrence of t in s, or -1 if there is none.
+Exercise 4-2. Extend atof to handle scientific notation of the form 123.45e-6
+where a floating-point number may be followed by e or E and an optionally
+signed exponent. 
 */
 
 #include <stdio.h>
-#define MAXLINE 1000 /* maximum input line length */
+#include <ctype.h>
 
-int getline(char line[], int max);
-int strindex(char source[], char searchfor[]);
-char pattern[] = "ould"; /* pattern to search for */
-
-/* find all lines matching pattern */
-int main(){
-    char line[MAXLINE] = " Ah Love! could you and I with Fate conspire\n"
-"To grasp this sorry Scheme of Things entire,\n"
-"Would not we shatter it to bits -- and then\n"
-"Re-mould it nearer to the Heart's Desire!\n"
-"";
-    int found = 0;
-    while (getline(line, MAXLINE) > 0){
-        if (strindex(line, pattern) >= 0){
-            printf("%s", line);
-            found++;
-        }
+ /* atof: convert string s to double */
+ double atof(char s[]){
+    double val, power;
+    int i, sign;
+    for (i = 0; isspace(s[i]); i++) /* skip white space */
+        ;
+    sign = (s[i] == '-') ? -1 : 1;
+    if (s[i] == '+' || s[i] == '-')
+        i++;
+    for (val = 0.0; isdigit(s[i]); i++)
+        val = 10.0 * val + (s[i] - '0');
+    if (s[i] == '.')
+        i++;
+    for (power = 1.0; isdigit(s[i]); i++) {
+        val = 10.0 * val + (s[i] - '0');
+        power *= 10;
     }
-    return found;
+    return sign * val / power;
+ }
+
+ int main(){
+
+    return 0;
 }
-
-/* getline: get line into s, return length */
-int getline(char s[], int lim){
-    int c, i;
-    i = 0;
-    while (--lim > 0 && (c=getchar()) != EOF && c != '\n')
-        s[i++] = c;
-    if (c == '\n')
-        s[i++] = c;
-    s[i] = '\0';
-    return i;
-}
-
-/* strindex: return index of t in s, -1 if none */
-int strindex(char s[], char t[]){
-    int i, j, k;
-    for (i = 0; s[i] != '\0'; i++) {
-        for (j=i, k=0; t[k]!='\0' && s[j]==t[k]; j++, k++)
-            ;
-        if (k > 0 && t[k] == '\0')
-            return i;
-    }
-    return -1;
-}
-
-
