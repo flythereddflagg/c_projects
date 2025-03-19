@@ -24,6 +24,34 @@ this approach.
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#define STACK_LEN 100
+
+typedef struct {
+    int top;
+    double arr[STACK_LEN];
+} Stack;
+
+int Stack_push(Stack self, double val){
+    if (self.top < STACK_LEN){
+        self.arr[self.top] = val;
+        self.top++;
+        return self.top;
+    }
+    printf("error: stack full, can't push %g\n", val);
+    return -1;
+}
+
+double Stack_pop(Stack self){
+    if (self.top > 0){
+        self.top--;
+        return self.arr[self.top];
+    }
+    printf("error: stack empty\n");
+    return 0.0;
+}
+
+
 
  int main(int argc, char** argv){
 
