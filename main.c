@@ -1,45 +1,31 @@
 /*
-Exercise 4-2. Extend atof to handle scientific notation of the form 123.45e-6
-where a floating-point number may be followed by e or E and an optionally
-signed exponent. 
+Pre EX 4-3: IMPLEMENT THE POLISH CALCULATOR WITH A STACK
+Exercise 4-3. Given the basic framework, it's straightforward to extend the 
+calculator. Add themodulus (%) operator and provisions for negative numbers. 
+Exercise 4-4. Add the commands to print the top elements of the stack without 
+popping, toduplicate it, and to swap the top two elements. Add a command to 
+clear the stack. 
+Exercise 4-5. Add access to library functions like sin, exp, and pow. See 
+<math.h> in Appendix B, Section 4. 
+Exercise 4-6. Add commands for handling variables. (It's easy to provide 
+twenty-six variableswith single-letter names.) Add a variable for the most 
+recently printed value. 
+Exercise 4-7. Write a routine ungets(s) that will push back an entire string 
+onto the input.Should ungets know about buf and bufp, or should it just use 
+ungetch? 
+Exercise 4-8. Suppose that there will never be more than one character of 
+pushback. Modify getch and ungetch accordingly. 
+Exercise 4-9. Our getch and ungetch do not handle a pushed-back EOF correctly. 
+Decidewhat their properties ought to be if an EOF is pushed back, then 
+implement your design. 
+Exercise 4-10. An alternate organization uses getline to read an entire input 
+line; this makesgetch and ungetch unnecessary. Revise the calculator to use 
+this approach.
 */
 
 #include <stdio.h>
-#include <ctype.h>
 
- /* atof: convert string s to double */
- double atof(char s[]){
-    double val, power, exp;
-    int i, sign;
-    for (i = 0; isspace(s[i]); i++) /* skip white space */
-        ;
-    sign = (s[i] == '-') ? -1 : 1;
-    if (s[i] == '+' || s[i] == '-')
-        i++;
-    for (val = 0.0; isdigit(s[i]); i++)
-        val = 10.0 * val + (s[i] - '0');
-    if (s[i] == '.')
-        i++;
-    for (power = 1.0; isdigit(s[i]); i++) {
-        val = 10.0 * val + (s[i] - '0');
-        power *= 10;
-    }
-    if (s[i] == 'e' || s[i] == 'E')
-        i++;
+ int main(int argc, char** argv){
 
-    for (exp = 0.0; isdigit(s[i]); i++)
-        exp = 10.0 * exp + (s[i] - '0');
-    for (int j = 0; j < exp; j++)
-        val *= 10.0;
-
-
-    return sign * val / power;
- }
-
- int main(){
-    char test1[] = "1.223049"; 
-    printf("%s: %f\n", test1, atof(test1));
-    char test2[] = "1.223049e2"; 
-    printf("%s: %f\n", test2, atof(test2));
     return 0;
 }
