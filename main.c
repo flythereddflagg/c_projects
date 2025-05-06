@@ -23,9 +23,12 @@ line; this makesgetch and ungetch unnecessary. Revise the calculator to use
 this approach.
 */
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #define STACK_LEN 100
+#define NUMBER 1
+#define MAXOP 30
 
 typedef struct {
     int top;
@@ -51,36 +54,54 @@ double Stack_pop(Stack self){
     return 0.0;
 }
 
+int getop(char* s){
+    
+    char c;
+    int i = 0;
+    while (c = getch() != '\n'){
+        if (i >= MAXOP) 
+            break;
+        s[i] = c;
+        i++;
+    }
+    if (s[0] >= '0' && s[0] <= '9')
+        return NUMBER;
+    else
+        return s[0];
+}
 
 
  int main(int argc, char** argv){
     int type;
     double op2;
-    char s[MAXOP];
+    char ss[MAXOP];
+    char* s = &ss[0];
+    Stack math_stack;
+    math_stack.top = 0;
     while ((type = getop(s)) != EOF) {
     switch (type) {
         case NUMBER:
-            push(atof(s));
+            Stack_push(math_stack, atof(s));
             break;
         case '+':
-            push(pop() + pop());
+            Stack_push(math_stack, Stack_pop(math_stack) + Stack_pop(math_stack));
             break;
         case '*':
-            push(pop() * pop());
+            Stack_push(math_stack, Stack_pop(math_stack) * Stack_pop(math_stack));
             break;
         case '-':
-            op2 = pop();
-            push(pop() - op2);
+            op2 = Stack_pop(math_stack);
+            Stack_push(math_stack, Stack_pop(math_stack) - op2);
             break;
         case '/':
-            op2 = pop();
+            op2 = Stack_pop(math_stack);
             if (op2 != 0.0)
-                push(pop() / op2);
+                Stack_push(math_stack, Stack_pop(math_stack) / op2);
             else
                 printf("error: zero divisor\n");
             break;
         case '\n':
-            printf("\t%.8g\n", pop());
+            printf("\t%.8g\n", Stack_pop(math_stack));
             break;
         default:
             printf("error: unknown command %s\n", s);
