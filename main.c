@@ -37,28 +37,27 @@ typedef struct {
 
 int Stack_push(Stack self, double val){
     if (self.top < STACK_LEN){
-        self.arr[self.top] = val;
         self.top++;
+        self.arr[self.top] = val;
         return self.top;
     }
-    printf("error: stack full, can't push %g\n", val);
+    printf("\nerror: stack full, can't push %f\n", val);
     return -1;
 }
 
 double Stack_pop(Stack self){
     if (self.top > 0){
-        self.top--;
-        return self.arr[self.top];
+        return self.arr[self.top--];
     }
-    printf("error: stack empty\n");
+    printf("\nerror: stack empty\n");
     return 0.0;
 }
 
 int getop(char* s){
-    
     char c;
     int i = 0;
-    while (c = getch() != '\n'){
+    while ((c = getchar()) != ' '){
+        printf("%c", c);
         if (i >= MAXOP) 
             break;
         s[i] = c;
@@ -77,36 +76,40 @@ int getop(char* s){
     char ss[MAXOP];
     char* s = &ss[0];
     Stack math_stack;
-    math_stack.top = 0;
+    math_stack.top = -1;
     while ((type = getop(s)) != EOF) {
-    switch (type) {
-        case NUMBER:
-            Stack_push(math_stack, atof(s));
-            break;
-        case '+':
-            Stack_push(math_stack, Stack_pop(math_stack) + Stack_pop(math_stack));
-            break;
-        case '*':
-            Stack_push(math_stack, Stack_pop(math_stack) * Stack_pop(math_stack));
-            break;
-        case '-':
-            op2 = Stack_pop(math_stack);
-            Stack_push(math_stack, Stack_pop(math_stack) - op2);
-            break;
-        case '/':
-            op2 = Stack_pop(math_stack);
-            if (op2 != 0.0)
-                Stack_push(math_stack, Stack_pop(math_stack) / op2);
-            else
-                printf("error: zero divisor\n");
-            break;
-        case '\n':
-            printf("\t%.8g\n", Stack_pop(math_stack));
-            break;
-        default:
-            printf("error: unknown command %s\n", s);
-            break;
+        switch (type) {
+            case NUMBER:
+                Stack_push(math_stack, atof(s));
+                break;
+            case '+':
+                Stack_push(math_stack, Stack_pop(math_stack) + Stack_pop(math_stack));
+                break;
+            case '*':
+                Stack_push(math_stack, Stack_pop(math_stack) * Stack_pop(math_stack));
+                break;
+            case '-':
+                op2 = Stack_pop(math_stack);
+                Stack_push(math_stack, Stack_pop(math_stack) - op2);
+                break;
+            case '/':
+                op2 = Stack_pop(math_stack);
+                if (op2 != 0.0)
+                    Stack_push(math_stack, Stack_pop(math_stack) / op2);
+                else
+                    printf("error: zero divisor\n");
+                break;
+            case '\n':
+            case '\r':
+                printf("\toutput: %f\n", Stack_pop(math_stack));
+                break;
+            default:
+                printf("error: unknown command %s\n", s);
+                break;
         }
+        float toppy_toppins = Stack_pop(math_stack);
+        printf("top: %f\n", toppy_toppins);
+        Stack_push(math_stack, toppy_toppins);
     }
     return 0;
 }
