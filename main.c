@@ -27,7 +27,7 @@ this approach.
 #include <stdio.h>
 #include <stdlib.h>
 #define STACK_LEN 100
-#define NUMBER 1
+#define NUMBER '1'
 #define MAXOP 30
 
 typedef struct {
@@ -35,81 +35,80 @@ typedef struct {
     double arr[STACK_LEN];
 } Stack;
 
+Stack Stack_init(){
+    Stack new_stack;
+    new_stack.top = -1;
+    return new_stack;
+}
+
 int Stack_push(Stack self, double val){
-    if (self.top < STACK_LEN){
-        self.top++;
-        self.arr[self.top] = val;
-        return self.top;
+    if (self.top + 1 >= STACK_LEN){
+        printf("Error: Stack is full\n");
+        return -1;
     }
-    printf("\nerror: stack full, can't push %f\n", val);
-    return -1;
+    self.top++;
+    self.arr[self.top] = val;
+    printf("pushing %f", val);
+    return 0;
 }
 
 double Stack_pop(Stack self){
-    if (self.top > 0){
-        return self.arr[self.top--];
+    if (self.top < 0){
+        printf("Error: Stack is empty\n");
+        return 0.0;
     }
-    printf("\nerror: stack empty\n");
-    return 0.0;
+    double popped = self.arr[self.top];
+    self.top--;
+    printf("popping %f", popped);
+
+    return popped;
 }
 
-int getop(char* s){
-    char c;
-    int i = 0;
-    while ((c = getchar()) != ' '){
-        printf("%c", c);
-        if (i >= MAXOP) 
+char getop(char* s){
+    // loads the operator/operand into s and returns the type in the string
+    char c = '\0';
+    int index = 0;
+    char type;
+    while (c != ' ' && c != '\n'){
+        c = getchar();
+        if (index >= MAXOP - 1){
+            index = MAXOP - 1;
             break;
-        s[i] = c;
-        i++;
+        }
+        s[index] = c;
+        index ++;
     }
-    if (s[0] >= '0' && s[0] <= '9')
-        return NUMBER;
-    else
-        return s[0];
+    s[index] = '\0';
+    type = (s[0] >= '0' && s[0] <= '9')? NUMBER : s[0];
+    if (c == '\n' && type != EOF)
+        type = '\n';
+    return type;
 }
 
-
- int main(int argc, char** argv){
-    int type;
-    double op2;
-    char ss[MAXOP];
-    char* s = &ss[0];
-    Stack math_stack;
-    math_stack.top = -1;
-    while ((type = getop(s)) != EOF) {
-        switch (type) {
+int main(int argc, char** argv){
+    char op_type;
+    char op_str[MAXOP];
+    char* p_op_str = &(op_str[0]);
+    Stack math_stack = Stack_init();
+    while ((op_type = getop(p_op_str)) != EOF){
+        // printf("%c -> %s\n", op_type, p_op_str);
+        switch (op_type){
             case NUMBER:
-                Stack_push(math_stack, atof(s));
+                // push atof(p_op_str)
+                Stack_push(math_stack, atof(p_op_str));
                 break;
             case '+':
-                Stack_push(math_stack, Stack_pop(math_stack) + Stack_pop(math_stack));
-                break;
-            case '*':
-                Stack_push(math_stack, Stack_pop(math_stack) * Stack_pop(math_stack));
-                break;
-            case '-':
-                op2 = Stack_pop(math_stack);
-                Stack_push(math_stack, Stack_pop(math_stack) - op2);
-                break;
-            case '/':
-                op2 = Stack_pop(math_stack);
-                if (op2 != 0.0)
-                    Stack_push(math_stack, Stack_pop(math_stack) / op2);
-                else
-                    printf("error: zero divisor\n");
-                break;
+                // push(pop() + pop())
+                Stack_push(
+                    math_stack, 
+                    Stack_pop(math_stack) + Stack_pop(math_stack)
+                );
             case '\n':
             case '\r':
-                printf("\toutput: %f\n", Stack_pop(math_stack));
-                break;
+                printf("output: %f\n", Stack_pop(math_stack));
             default:
-                printf("error: unknown command %s\n", s);
-                break;
+                printf("Unknown operand type '%c' -> '%s'", op_type, p_op_str);
         }
-        float toppy_toppins = Stack_pop(math_stack);
-        printf("top: %f\n", toppy_toppins);
-        Stack_push(math_stack, toppy_toppins);
     }
     return 0;
 }
