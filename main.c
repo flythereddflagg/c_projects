@@ -41,25 +41,26 @@ Stack Stack_init(){
     return new_stack;
 }
 
-int Stack_push(Stack self, double val){
-    if (self.top + 1 >= STACK_LEN){
+int Stack_push(Stack* self, double val){
+    
+    if ((*self).top + 1 >= STACK_LEN){
         printf("Error: Stack is full\n");
         return -1;
     }
-    self.top++;
-    self.arr[self.top] = val;
-    printf("pushing %f", val);
+    (*self).top++;
+    (*self).arr[(*self).top] = val;
+    //printf("pushing %f", val);
     return 0;
 }
 
-double Stack_pop(Stack self){
-    if (self.top < 0){
+double Stack_pop(Stack* self){
+    if ((*self).top < 0){
         printf("Error: Stack is empty\n");
         return 0.0;
     }
-    double popped = self.arr[self.top];
-    self.top--;
-    printf("popping %f", popped);
+    double popped = (*self).arr[(*self).top];
+    (*self).top--;
+//    printf("popping %f", popped);
 
     return popped;
 }
@@ -69,8 +70,7 @@ char getop(char* s){
     char c = '\0';
     int index = 0;
     char type;
-    while (c != ' ' && c != '\n'){
-        c = getchar();
+    while ((c = getchar()) != ' ' && c != '\n'){
         if (index >= MAXOP - 1){
             index = MAXOP - 1;
             break;
@@ -89,25 +89,27 @@ int main(int argc, char** argv){
     char op_type;
     char op_str[MAXOP];
     char* p_op_str = &(op_str[0]);
-    Stack math_stack = Stack_init();
+    Stack stk = Stack_init();
+    Stack* stk_p = &stk;
     while ((op_type = getop(p_op_str)) != EOF){
         // printf("%c -> %s\n", op_type, p_op_str);
         switch (op_type){
             case NUMBER:
                 // push atof(p_op_str)
-                Stack_push(math_stack, atof(p_op_str));
+                Stack_push(stk_p, atof(p_op_str));
                 break;
             case '+':
                 // push(pop() + pop())
                 Stack_push(
-                    math_stack, 
-                    Stack_pop(math_stack) + Stack_pop(math_stack)
+                    stk_p, 
+                    Stack_pop(stk_p) + Stack_pop(stk_p)
                 );
             case '\n':
             case '\r':
-                printf("output: %f\n", Stack_pop(math_stack));
+                printf("output: %f\n", Stack_pop(stk_p));
+                break;
             default:
-                printf("Unknown operand type '%c' -> '%s'", op_type, p_op_str);
+                printf("Unknown operand type '%d' -> '%s'", (int) op_type, p_op_str);
         }
     }
     return 0;
