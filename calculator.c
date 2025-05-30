@@ -68,9 +68,9 @@ double Stack_pop(Stack* self){
 char getop(char* s){
     // loads the operator/operand into s and returns the type in the string
     char c = '\0';
-    // int index = 0;
+    int index = 0;
     char type;
-    /*while ((c = getchar()) != ' ' && c != '\n'){
+    while ((c = getchar()) != ' ' && c != '\n'){
         if (index >= MAXOP - 1){
             index = MAXOP - 1;
             break;
@@ -78,7 +78,7 @@ char getop(char* s){
         s[index] = c;
         index ++;
     }
-    s[index] = '\0';*/
+    s[index] = '\0';
     type = (s[0] >= '0' && s[0] <= '9')? NUMBER : s[0];
     if (c == '\n' && type != EOF)
         type = '\n';
@@ -86,16 +86,12 @@ char getop(char* s){
 }
 
 int main(int argc, char** argv){
+    char op_type;
+    char op_str[MAXOP];
+    char* p_op_str = &(op_str[0]);
     Stack stk = Stack_init();
     Stack* stk_p = &stk;
-    char* ops[MAXOP] = {"22.2", "232", "+", ""};
-    char op_type = '\0';
-    char* p_op_str;
-    for (int i = 0; i < MAXOP; i++){
-        p_op_str = ops[i];
-        if (p_op_str[0] == '\0') 
-            break;
-        op_type = getop(p_op_str);
+    while ((op_type = getop(p_op_str)) != EOF){
         // printf("%c -> %s\n", op_type, p_op_str);
         switch (op_type){
             case NUMBER:
