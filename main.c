@@ -26,6 +26,7 @@ this approach.
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define STACK_LEN 100
 #define NUMBER '1'
 #define MAXOP 30
@@ -67,53 +68,61 @@ double Stack_pop(Stack* self){
 
 char getop(char* s){
     // loads the operator/operand into s and returns the type in the string
-    char c = '\0';
-    // int index = 0;
-    char type;
-    /*while ((c = getchar()) != ' ' && c != '\n'){
-        if (index >= MAXOP - 1){
-            index = MAXOP - 1;
-            break;
-        }
-        s[index] = c;
-        index ++;
-    }
-    s[index] = '\0';*/
-    type = (s[0] >= '0' && s[0] <= '9')? NUMBER : s[0];
-    if (c == '\n' && type != EOF)
-        type = '\n';
+    char type = (s[0] >= '0' && s[0] <= '9')? NUMBER : s[0];
     return type;
+}
+
+void get_line(char** line){
+    char c = '\0';
+    char word[MAXOP];
+    int index = 0, j = 0;
+    while((c = getchar()) != '\n'){
+        if(index >= (MAXOP - 1) || c == ' '){
+            word[index] = '\0';
+            strncpy(word, line[j], index);
+            j++;
+            index = 0;
+            continue;
+        }
+        word[index] = c;
+        index++;
+    }
+
+    word[index] = '\0';
+    strncpy(word, line[j], index);
+    line[j+1] = "\n";
 }
 
 int main(int argc, char** argv){
     Stack stk = Stack_init();
     Stack* stk_p = &stk;
-    char* ops[MAXOP] = {"22.2", "232", "+", ""};
+    char* ops[MAXOP];
+    char** pops = &ops[0];
     char op_type = '\0';
     char* p_op_str;
-    for (int i = 0; i < MAXOP; i++){
-        p_op_str = ops[i];
-        if (p_op_str[0] == '\0') 
-            break;
-        op_type = getop(p_op_str);
-        // printf("%c -> %s\n", op_type, p_op_str);
-        switch (op_type){
-            case NUMBER:
-                // push atof(p_op_str)
-                Stack_push(stk_p, atof(p_op_str));
+    get_line(pops);
+    for(int j = 0; j < MAXOP; j++){
+        for (int i = 0; i < MAXOP; i++){
+            p_op_str = ops[i];
+            op_type = getop(p_op_str);
+            switch (op_type){
+                case NUMBER:
+                    Stack_push(stk_p, atof(p_op_str));
+                    break;
+                case '+':
+                    Stack_push(
+                        stk_p, 
+                        Stack_pop(stk_p) + Stack_pop(stk_p)
+                    );
+                case '\n':
+                case '\r':
+                    printf("output: %f\n", Stack_pop(stk_p));
+                    break;
+                default:
+                    printf("Unknown operand type '%d' -> '%s'", (int) op_type, p_op_str);
+            }
+            if (p_op_str[0] == '\n') 
                 break;
-            case '+':
-                // push(pop() + pop())
-                Stack_push(
-                    stk_p, 
-                    Stack_pop(stk_p) + Stack_pop(stk_p)
-                );
-            case '\n':
-            case '\r':
-                printf("output: %f\n", Stack_pop(stk_p));
-                break;
-            default:
-                printf("Unknown operand type '%d' -> '%s'", (int) op_type, p_op_str);
         }
     }
     return 0;
