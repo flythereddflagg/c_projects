@@ -32,7 +32,7 @@ this approach.
 #define MAXOP 30
 #define LINE_LEN 80
 
-typedef enum (false, true) bool;
+typedef enum {false, true} bool;
 
 typedef struct {
     int top;
@@ -70,15 +70,34 @@ double Stack_pop(Stack* self){
 }
 
 void parse_line(char* line, int line_len, Stack* stk){
-    char op[MAXOP] = '\0';
+    char op[MAXOP] = "\0";
     int oplen = 0;
     for (int i = 0; i < line_len; i++){
-        if (line[i] == ' '){
-            if (oplen == 0)
+        if (line[i] == EOF){
+            line[line_len-1] = EOF;
+            return;
         }
-        op[oplen] = line[i];
-        oplen ++;
+        if (line[i] == '\n'){
+            printf(" \\n\n");
+            break;
+        }
+        else
+            printf(" %c", line[i]);
+        // if (line[i] == ' '){
+        //     if (oplen == 0) 
+        //         continue;
+        //     oplen ++;
+        //     op[oplen] = '\0';
+        //     oplen = 0;
+        //     execute_op(&op[0], stk);
+        //     continue;
+        // }
+        // op[oplen] = line[i];
+        // oplen ++;
     }
+    // if (oplen){
+
+    // }
 }
 
 int main(int argc, char** argv){
@@ -89,8 +108,11 @@ int main(int argc, char** argv){
     bool running = true;
 
     while (running){
+        printf("--%u--\n", EOF);
         fgets(line, LINE_LEN, stdin);
         parse_line(line, LINE_LEN, stk);
+        if (line[LINE_LEN - 1] == EOF) 
+            running = false;
     }
     return 0;
 }
