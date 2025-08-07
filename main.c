@@ -30,6 +30,9 @@ this approach.
 #define STACK_LEN 100
 #define NUMBER '1'
 #define MAXOP 30
+#define LINE_LEN 80
+
+typedef enum (false, true) bool;
 
 typedef struct {
     int top;
@@ -66,64 +69,28 @@ double Stack_pop(Stack* self){
     return popped;
 }
 
-char getop(char* s){
-    // loads the operator/operand into s and returns the type in the string
-    char type = (s[0] >= '0' && s[0] <= '9')? NUMBER : s[0];
-    return type;
-}
-
-void get_line(char** line){
-    char c = '\0';
-    char word[MAXOP];
-    int index = 0, j = 0;
-    while((c = getchar()) != '\n'){
-        if(index >= (MAXOP - 1) || c == ' '){
-            word[index] = '\0';
-            strncpy(word, line[j], index);
-            j++;
-            index = 0;
-            continue;
+void parse_line(char* line, int line_len, Stack* stk){
+    char op[MAXOP] = '\0';
+    int oplen = 0;
+    for (int i = 0; i < line_len; i++){
+        if (line[i] == ' '){
+            if (oplen == 0)
         }
-        word[index] = c;
-        index++;
+        op[oplen] = line[i];
+        oplen ++;
     }
-
-    word[index] = '\0';
-    strncpy(word, line[j], index);
-    line[j+1] = "\n";
 }
 
 int main(int argc, char** argv){
-    Stack stk = Stack_init();
-    Stack* stk_p = &stk;
-    char* ops[MAXOP];
-    char** pops = &ops[0];
-    char op_type = '\0';
-    char* p_op_str;
-    get_line(pops);
-    for(int j = 0; j < MAXOP; j++){
-        for (int i = 0; i < MAXOP; i++){
-            p_op_str = ops[i];
-            op_type = getop(p_op_str);
-            switch (op_type){
-                case NUMBER:
-                    Stack_push(stk_p, atof(p_op_str));
-                    break;
-                case '+':
-                    Stack_push(
-                        stk_p, 
-                        Stack_pop(stk_p) + Stack_pop(stk_p)
-                    );
-                case '\n':
-                case '\r':
-                    printf("output: %f\n", Stack_pop(stk_p));
-                    break;
-                default:
-                    printf("Unknown operand type '%d' -> '%s'", (int) op_type, p_op_str);
-            }
-            if (p_op_str[0] == '\n') 
-                break;
-        }
+    Stack stk_var = Stack_init();
+    Stack* stk = &stk_var;
+    char line_arr[LINE_LEN];
+    char* line = &(line_arr[0]);
+    bool running = true;
+
+    while (running){
+        fgets(line, LINE_LEN, stdin);
+        parse_line(line, LINE_LEN, stk);
     }
     return 0;
 }
