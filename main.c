@@ -74,7 +74,7 @@ void parse_line(char* line, int line_len, Stack* stk){
     int oplen = 0;
     for (int i = 0; i < line_len; i++){
         if (line[i] == EOF){
-            line[line_len-1] = EOF;
+            // line[line_len-1] = EOF;
             return;
         }
         if (line[i] == '\n'){
@@ -108,11 +108,14 @@ int main(int argc, char** argv){
     bool running = true;
 
     while (running){
-        printf("--%u--\n", EOF);
-        fgets(line, LINE_LEN, stdin);
-        parse_line(line, LINE_LEN, stk);
-        if (line[LINE_LEN - 1] == EOF) 
-            running = false;
+		fgets(line, LINE_LEN, stdin);
+		parse_line(line, LINE_LEN, stk);
+			for (int i = 0; i < LINE_LEN; i++)
+				if (line[i] == EOF){
+					printf("-%u-"line[i]);
+					running = false;
+				}
+		printf("--%u--\n", running);
     }
     return 0;
 }
