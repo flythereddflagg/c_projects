@@ -32,8 +32,6 @@ this approach.
 #define MAXOP 30
 #define LINE_LEN 80
 
-typedef enum {false, true} bool;
-
 typedef struct {
     int top;
     double arr[STACK_LEN];
@@ -41,81 +39,69 @@ typedef struct {
 
 Stack Stack_init(){
     Stack new_stack;
-    new_stack.top = -1;
+    new_stack.top = 0;
     return new_stack;
 }
 
 int Stack_push(Stack* self, double val){
-    
-    if ((*self).top + 1 >= STACK_LEN){
+    int check_len =  STACK_LEN - (*self).top + 1;
+    if (check_len < 0){
         printf("Error: Stack is full\n");
-        return -1;
+        return check_len;
     }
-    (*self).top++;
     (*self).arr[(*self).top] = val;
+    (*self).top++;
     //printf("pushing %f", val);
     return 0;
 }
 
 double Stack_pop(Stack* self){
-    if ((*self).top < 0){
+    if ((*self).top - 1 < 0){
         printf("Error: Stack is empty\n");
         return 0.0;
     }
-    double popped = (*self).arr[(*self).top];
     (*self).top--;
 //    printf("popping %f", popped);
 
-    return popped;
+    return (*self).arr[(*self).top];
 }
 
-void parse_line(char* line, int line_len, Stack* stk){
-    char op[MAXOP] = "\0";
-    int oplen = 0;
-    for (int i = 0; i < line_len; i++){
-        if (line[i] == EOF){
-            // line[line_len-1] = EOF;
-            return;
-        }
-        if (line[i] == '\n'){
-            printf(" \\n\n");
-            break;
-        }
-        else
-            printf(" %c", line[i]);
-        // if (line[i] == ' '){
-        //     if (oplen == 0) 
-        //         continue;
-        //     oplen ++;
-        //     op[oplen] = '\0';
-        //     oplen = 0;
-        //     execute_op(&op[0], stk);
-        //     continue;
-        // }
-        // op[oplen] = line[i];
-        // oplen ++;
+Stack_print(Stack* self){
+    printf("{ ");;
+    for (int i = 0; i < self->top; i++){
+        printf("%f ", self->arr[i]);
     }
-    // if (oplen){
-
-    // }
+    printf("}");
 }
+
+
 
 int main(int argc, char** argv){
     Stack stk_var = Stack_init();
     Stack* stk = &stk_var;
-    char line_arr[LINE_LEN];
-    char* line = &(line_arr[0]);
-    bool running = true;
 
-    while (running){
-		fgets(line, LINE_LEN, stdin);
-		parse_line(line, LINE_LEN, stk);
-			for (int i = 0; i < LINE_LEN; i++)
-				if (line[i] == EOF){
-					printf("-%u-"line[i]);
-					running = false;
-				}
-		printf("--%u--\n", running);
-    }
+    printf("%f\n", Stack_pop(stk));
+    printf("%d\n", Stack_push(stk, 23.0));
+    printf("%f\n", Stack_pop(stk));
+    printf("%d\n", Stack_push(stk, 34.0));
+    printf("%d\n", Stack_push(stk, 54.0));
+    printf("%d\n", Stack_push(stk, 66.0));
+    
+    Stack_print(stk);
+    printf("\n");
+    // char line_arr[LINE_LEN];
+    // char* line = &(line_arr[0]);
+    // bool running = true;
+
+    // while (running){
+	// 	fgets(line, LINE_LEN, stdin);
+	// 	parse_line(line, LINE_LEN, stk);
+	// 		for (int i = 0; i < LINE_LEN; i++)
+	// 			if (line[i] == EOF){
+	// 				printf("-%u-", line[i]);
+	// 				running = false;
+	// 			}
+	// 	printf("--%u--\n", running);
+    // }
     return 0;
 }

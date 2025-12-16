@@ -1,26 +1,16 @@
 CC = gcc
 CFLAGS = -g -Wall -fanalyzer
-SRC = main
-INCLUDE = ./include
+MAIN = main
 
-.PHONY: all build run preprocess clean
+.PHONY: all main clean run
 
-all: build run
+all: main
 
+main: $(MAIN).c
+	$(CC) $(CFLAGS) $(MAIN).c -o $(MAIN).exe
 
-build:
-	$(CC) $(CFLAGS) $(SRC).c -o $(SRC).exe -I$(INCLUDE)
-
-
-run:
-	./$(SRC).exe
-
-
-preprocess:
-	$(CC) $(CFLAGS) -E $(SRC).c -o $(SRC).preprocess -I$(INCLUDE)
-
+run: main
+	./$(MAIN).exe
 
 clean:
-	rm -f *.exe
-	rm -f *.preprocess
-
+	rm $(MAIN).exe
