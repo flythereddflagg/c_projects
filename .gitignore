@@ -1,3 +1,5 @@
 # exclude the following
 **.exe
 **.o
+# ignore the following folders
+build/

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 typedef struct {
-    void* arr;
+    void *arr;
     size_t length;
     size_t element_size;
 } Array;

@@ -1,107 +1,123 @@
-/*
-Pre EX 4-3: IMPLEMENT THE POLISH CALCULATOR WITH A STACK
-Exercise 4-3. Given the basic framework, it's straightforward to extend the 
-calculator. Add themodulus (%) operator and provisions for negative numbers. 
-Exercise 4-4. Add the commands to print the top elements of the stack without 
-popping, toduplicate it, and to swap the top two elements. Add a command to 
-clear the stack. 
-Exercise 4-5. Add access to library functions like sin, exp, and pow. See 
-<math.h> in Appendix B, Section 4. 
-Exercise 4-6. Add commands for handling variables. (It's easy to provide 
-twenty-six variableswith single-letter names.) Add a variable for the most 
-recently printed value. 
-Exercise 4-7. Write a routine ungets(s) that will push back an entire string 
-onto the input.Should ungets know about buf and bufp, or should it just use 
-ungetch? 
-Exercise 4-8. Suppose that there will never be more than one character of 
-pushback. Modify getch and ungetch accordingly. 
-Exercise 4-9. Our getch and ungetch do not handle a pushed-back EOF correctly. 
-Decidewhat their properties ought to be if an EOF is pushed back, then 
-implement your design. 
-Exercise 4-10. An alternate organization uses getline to read an entire input 
-line; this makesgetch and ungetch unnecessary. Revise the calculator to use 
-this approach.
-*/
-
-
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#define STACK_LEN 100
-#define NUMBER '1'
-#define MAXOP 30
-#define LINE_LEN 80
 
 typedef struct {
-    int top;
-    double arr[STACK_LEN];
-} Stack;
+    void *arr;
+    size_t length;
+    size_t element_size;
+} Array;
 
-Stack Stack_init(){
-    Stack new_stack;
-    new_stack.top = 0;
-    return new_stack;
-}
+/*
+ * Needed methods:
+ * append
+ * insert
+ * pop
+ * remove
+ * clear
+ * index
+ * count
+ * sort
+ * reverse
+ * copy
+ *
+ * list.append(x)
+ * Add an item to the end of the list. Equivalent to a[len(a):] = [x].
+ *
+ * list.extend(iterable)
+ * Extend the list by appending all the items from the iterable. Equivalent to
+ * a[len(a):] = iterable.
+ *
+ * list.insert(i, x)
+ * Insert an item at a given position. The first argument is the index of the
+ * element before which to insert, so a.insert(0, x) inserts at the front of 
+ * the list, and a.insert(len(a), x) is equivalent to a.append(x).
+ *
+ * list.remove(x)
+ * Remove the first item from the list whose value is equal to x. It raises 
+ * a ValueError if there is no such item.
+ *
+ * list.pop([i])
+ * Remove the item at the given position in the list, and return it. If no 
+ * index is specified, a.pop() removes and returns the last item in the list. 
+ * It raises an IndexError if the list is empty or the index is outside the 
+ * list range.
+ *
+ * list.clear()
+ * Remove all items from the list. Equivalent to del a[:].
+ *
+ * list.index(x[, start[, end]])
+ * Return zero-based index in the list of the first item whose value is equal 
+ * to x. Raises a ValueError if there is no such item.
+ *
+ * The optional arguments start and end are interpreted as in the slice 
+ * notation and are used to limit the search to a particular subsequence of 
+ * the list. The returned index is computed relative to the beginning of the 
+ * full sequence rather than the start argument.
+ *
+ * list.count(x)
+ * Return the number of times x appears in the list.
+ *
+ * list.sort(*, key=None, reverse=False)
+ * Sort the items of the list in place (the arguments can be used for sort 
+ * customization, see sorted() for their explanation).
+ *
+ * list.reverse()
+ * Reverse the elements of the list in place.
+ *
+ * list.copy()
+ * Return a shallow copy of the list. Equivalent to a[:].
+ * */
 
-int Stack_push(Stack* self, double val){
-    int check_len =  STACK_LEN - (*self).top + 1;
-    if (check_len < 0){
-        printf("Error: Stack is full\n");
-        return check_len;
-    }
-    (*self).arr[(*self).top] = val;
-    (*self).top++;
-    //printf("pushing %f", val);
-    return 0;
-}
-
-double Stack_pop(Stack* self){
-    if ((*self).top - 1 < 0){
-        printf("Error: Stack is empty\n");
-        return 0.0;
-    }
-    (*self).top--;
-//    printf("popping %f", popped);
-
-    return (*self).arr[(*self).top];
-}
-
-Stack_print(Stack* self){
-    printf("{ ");;
-    for (int i = 0; i < self->top; i++){
-        printf("%f ", self->arr[i]);
-    }
-    printf("}");
-}
-
-
-
-int main(int argc, char** argv){
-    Stack stk_var = Stack_init();
-    Stack* stk = &stk_var;
-
-    printf("%f\n", Stack_pop(stk));
-    printf("%d\n", Stack_push(stk, 23.0));
-    printf("%f\n", Stack_pop(stk));
-    printf("%d\n", Stack_push(stk, 34.0));
-    printf("%d\n", Stack_push(stk, 54.0));
-    printf("%d\n", Stack_push(stk, 66.0));
+Array* new_array(size_t element_size, size_t length){
+    if (!element_size || !length) return NULL;
     
-    Stack_print(stk);
-    printf("\n");
-    // char line_arr[LINE_LEN];
-    // char* line = &(line_arr[0]);
-    // bool running = true;
+    Array* array = (Array*) malloc(sizeof(Array));
+    if (!array) return NULL;
 
-    // while (running){
-	// 	fgets(line, LINE_LEN, stdin);
-	// 	parse_line(line, LINE_LEN, stk);
-	// 		for (int i = 0; i < LINE_LEN; i++)
-	// 			if (line[i] == EOF){
-	// 				printf("-%u-", line[i]);
-	// 				running = false;
-	// 			}
-	// 	printf("--%u--\n", running);
-    // }
+    array->arr = malloc(element_size * length);
+    if (!array->arr){
+        free(array);
+        return NULL;
+    }
+    (*array).length = length;
+    (*array).element_size = element_size;
+    return array;
+}
+
+void* at(Array* array, size_t position){
+    if (position >= (*array).length) return NULL;
+    return array->arr + position * (*array).element_size;
+}
+
+int new_array(Array* array){
+    if (!array) return -1;
+    if (!array->arr) free(array->arr);
+    free(array);
     return 0;
 }
+
+int main(){
+    int init[] = {3, 2 ,345, 1, 3, 4, 2, 3};
+    Array* array = make_array(sizeof(int), 4);
+    int i = 0, success = -1;
+    int* element_addr = NULL;
+    for (i = 0; i < (*array).length; i++){
+        element_addr = (int*) at(array, i);
+        if (element_addr) *element_addr = init[i];
+    }
+
+    element_addr = (int*) at(array, i);
+    if (element_addr) *element_addr = init[i];
+    else 
+        printf(
+            "ERROR: index %d out of bounds for array of length %d\n", i, (int) (*array).length
+        );
+
+    for (i = 0; i < (*array).length; i++){
+        printf("array %d = %d\n", i, *(int*) at(array, i));
+    }
+    success = !free_array(array);
+    printf("Did it work? %d\n", success);
+    return 0;
+}
+
