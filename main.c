@@ -1,12 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-typedef struct {
-    void *arr;
-    size_t length;
-    size_t element_size;
-} Array;
-
 /*
  * Needed methods:
  * append
@@ -68,56 +59,81 @@ typedef struct {
  * Return a shallow copy of the list. Equivalent to a[:].
  * */
 
-Array* new_array(size_t element_size, size_t length){
+#include <stdio.h>
+#include <stdlib.h>
+
+#define INIT_ARR_LENGTH 1024
+
+typedef struct {
+    char *arr;
+    int length; // the end of the user space for the array
+    int end; // the end of the memory space for the array
+    int element_size; // size in bytes of each element
+} Array;
+
+Array* Array_on_stack(Array *self, char* arr, int element_size, int length){
     if (!element_size || !length) return NULL;
-    
+    int end = INIT_ARR_LENGTH;
+    while (end < (length * element_size))
+        end *= 2;
+    self->arr = arr;
+    self->end = end;
+    self->length = length;
+    self->element_size = element_size;
+    return self;
+}
+
+Array* Array_on_heap(int element_size, int length){
+    if (!element_size || !length) return NULL;
+    int end = INIT_ARR_LENGTH;
+    while (end < (length * element_size))
+        end *= 2;
     Array* array = (Array*) malloc(sizeof(Array));
     if (!array) return NULL;
 
-    array->arr = malloc(element_size * length);
+    array->arr = malloc(end);
     if (!array->arr){
         free(array);
         return NULL;
     }
-    (*array).length = length;
-    (*array).element_size = element_size;
+    array->end = end;
+    array->length = length;
+    array->element_size = element_size;
     return array;
 }
 
-void* at(Array* array, size_t position){
-    if (position >= (*array).length) return NULL;
-    return array->arr + position * (*array).element_size;
-}
-
-int new_array(Array* array){
-    if (!array) return -1;
-    if (!array->arr) free(array->arr);
-    free(array);
+int Array_heap_free(Array* self){
+    if (!self) 
+        return -1;
+    if (self->arr) 
+        free(self->arr);
+    free(self);
     return 0;
 }
 
+void* Array_at(Array* self, int position){
+    if (position < 0 || position >= self->length) 
+        return NULL;
+    return self->arr + position * self->element_size;
+}
+
 int main(){
-    int init[] = {3, 2 ,345, 1, 3, 4, 2, 3};
-    Array* array = make_array(sizeof(int), 4);
-    int i = 0, success = -1;
-    int* element_addr = NULL;
-    for (i = 0; i < (*array).length; i++){
-        element_addr = (int*) at(array, i);
-        if (element_addr) *element_addr = init[i];
+    Array array_d;
+    const int len = 12;
+    int arr1[len];
+    int* element;
+    Array* array = Array_on_stack(&array_d, (char*) &(arr1[0]), sizeof(int), len);
+    int test[INIT_ARR_LENGTH] = {1,2,3,4,5};
+    for (int i = 0; i < len; i++){
+        element = (int*) Array_at(array, i);
+        if (!element){
+            printf("ERROR element %d is wrong", i);
+            continue;
+        }
+        *(element) = test[i];
+        element = (int*)Array_at(array, i);
+        printf("%d ", *(element));
     }
-
-    element_addr = (int*) at(array, i);
-    if (element_addr) *element_addr = init[i];
-    else 
-        printf(
-            "ERROR: index %d out of bounds for array of length %d\n", i, (int) (*array).length
-        );
-
-    for (i = 0; i < (*array).length; i++){
-        printf("array %d = %d\n", i, *(int*) at(array, i));
-    }
-    success = !free_array(array);
-    printf("Did it work? %d\n", success);
     return 0;
 }
 
