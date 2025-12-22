@@ -61,79 +61,98 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "dbg.h"
 
 #define INIT_ARR_LENGTH 1024
 
 typedef struct {
     char *arr;
     int length; // the end of the user space for the array
-    int end; // the end of the memory space for the array
+    // int end; // the end of the memory space for the array
     int element_size; // size in bytes of each element
 } Array;
 
 Array* Array_on_stack(Array *self, char* arr, int element_size, int length){
-    if (!element_size || !length) return NULL;
-    int end = INIT_ARR_LENGTH;
-    while (end < (length * element_size))
-        end *= 2;
+    check(self && arr && element_size > 0 && length > 0, "Invalid inputs");
     self->arr = arr;
-    self->end = end;
     self->length = length;
     self->element_size = element_size;
     return self;
+error:
+    printf(
+        "PM: Array *self:%p, char* arr:%p, int element_size:%d, int length:%d\n", 
+        self, arr, element_size, length
+    );
+    exit(2);
 }
 
 Array* Array_on_heap(int element_size, int length){
-    if (!element_size || !length) return NULL;
-    int end = INIT_ARR_LENGTH;
-    while (end < (length * element_size))
-        end *= 2;
     Array* array = (Array*) malloc(sizeof(Array));
-    if (!array) return NULL;
+    check_mem(array);
 
-    array->arr = malloc(end);
-    if (!array->arr){
-        free(array);
-        return NULL;
-    }
-    array->end = end;
+    check(element_size > 0 && length > 0, "Invalid inputs");
+    array->arr = malloc(length*element_size);
+    check_mem(array->arr);
     array->length = length;
     array->element_size = element_size;
     return array;
+
+error:
+    if (array && array->arr)
+        free(array->arr);
+    if (array)
+        free(array);
+    printf(
+        "PM: Array* array:%p, int element_size: %d, int length:%d\n", 
+        array, element_size, length
+    );
+    exit(2);
 }
 
 int Array_heap_free(Array* self){
-    if (!self) 
-        return -1;
+    check(self, "Given Array is NULL");
     if (self->arr) 
         free(self->arr);
     free(self);
     return 0;
+error:
+    printf("PM: Array* self:%p\n", self);
+    exit(2);
 }
 
 void* Array_at(Array* self, int position){
-    if (position < 0 || position >= self->length) 
-        return NULL;
+    check(self && self->arr, "invalid array: %p; self.arr %p", self, self->arr)
+    check(position >= 0 && position < self->length, 
+        "Array out of bounds. Len: %d, pos: %d", self->length, position
+    );
     return self->arr + position * self->element_size;
+
+error:
+    return NULL;
 }
 
 int main(){
     Array array_d;
     const int len = 12;
     int arr1[len];
-    int* element;
-    Array* array = Array_on_stack(&array_d, (char*) &(arr1[0]), sizeof(int), len);
+    int *element;
+    Array* array = Array_on_stack(
+        &array_d, 
+        (char*)&(arr1[0]), 
+        sizeof(int), 
+        len
+    );
     int test[INIT_ARR_LENGTH] = {1,2,3,4,5};
-    for (int i = 0; i < len; i++){
+    for (int i = 0; i < array->length+1; i++){
         element = (int*) Array_at(array, i);
-        if (!element){
-            printf("ERROR element %d is wrong", i);
-            continue;
-        }
+        check(element, "NULL pointer returned from array");
         *(element) = test[i];
-        element = (int*)Array_at(array, i);
-        printf("%d ", *(element));
+        printf("%d @ %llu |", *(element), (long long unsigned)element);
     }
+    
     return 0;
+
+error:
+    return 1;
 }
 

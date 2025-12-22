@@ -7,7 +7,7 @@ MAIN = main
 all: main
 
 main: $(MAIN).c
-	$(CC) $(CFLAGS) $(MAIN).c -o $(MAIN).exe
+	$(CC) $(CFLAGS) $(MAIN).c -o $(MAIN).exe -I./include
 
 run: main
 	./$(MAIN).exe
