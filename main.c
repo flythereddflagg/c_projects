@@ -102,7 +102,7 @@ error:
 }
 
 void Array_heap_free(Array* self){
-    check(self, "Given Array is NULL");
+    check(self, "Cannot free NULL pointer");
     if (self->arr) 
         free(self->arr);
     free(self);
