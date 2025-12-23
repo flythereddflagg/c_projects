@@ -139,16 +139,15 @@ int main(){
         len
     );
     check(heap_array, "Heap array did not initalize correctly.");
-    int test[INIT_ARR_LENGTH] = {1,2,3,4,5};
     for (int i = 0; i < array->length; i++){
         element = (int*) Array_at(array, i);
         check(element, "NULL pointer returned from array");
-        *(element) = test[i];
+        *(element) = i+1;
         printf("%d @ %llu; ", *(element), (long long unsigned)element);
         // heap array down here
         element = (int*) Array_at(heap_array, i);
         check(element, "NULL pointer returned from array");
-        *(element) = test[i];
+        *(element) = i+1;
         printf("HEAP %d @ %llu \n", *(element), (long long unsigned)element);
     }
 
