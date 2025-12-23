@@ -87,41 +87,32 @@ error:
 }
 
 Array* Array_on_heap(int element_size, int length){
-    Array* array = (Array*) malloc(sizeof(Array));
+    Array *array = NULL;
+    check(element_size > 0 && length > 0, "Invalid inputs");
+    array = (Array*) malloc(sizeof(Array));
     check_mem(array);
 
-    check(element_size > 0 && length > 0, "Invalid inputs");
     array->arr = malloc(length*element_size);
     check_mem(array->arr);
     array->length = length;
     array->element_size = element_size;
-    return array;
 
 error:
-    if (array && array->arr)
-        free(array->arr);
-    if (array)
-        free(array);
-    printf(
-        "PM: Array* array:%p, int element_size: %d, int length:%d\n", 
-        array, element_size, length
-    );
-    exit(2);
+    return array;
 }
 
-int Array_heap_free(Array* self){
+void Array_heap_free(Array* self){
     check(self, "Given Array is NULL");
     if (self->arr) 
         free(self->arr);
     free(self);
-    return 0;
 error:
-    printf("PM: Array* self:%p\n", self);
-    exit(2);
+    ;
 }
 
 void* Array_at(Array* self, int position){
-    check(self && self->arr, "invalid array: %p; self.arr %p", self, self->arr)
+    check(self, "invalid array object: %p", self);
+    check(self->arr, "invalid array attrbute: %p", self->arr);
     check(position >= 0 && position < self->length, 
         "Array out of bounds. Len: %d, pos: %d", self->length, position
     );
@@ -136,23 +127,33 @@ int main(){
     const int len = 12;
     int arr1[len];
     int *element;
-    Array* array = Array_on_stack(
+    Array *array = Array_on_stack(
         &array_d, 
         (char*)&(arr1[0]), 
         sizeof(int), 
         len
     );
+
+    Array *heap_array = Array_on_heap(
+        sizeof(int),
+        len
+    );
+    check(heap_array, "Heap array did not initalize correctly.");
     int test[INIT_ARR_LENGTH] = {1,2,3,4,5};
-    for (int i = 0; i < array->length+1; i++){
+    for (int i = 0; i < array->length; i++){
         element = (int*) Array_at(array, i);
         check(element, "NULL pointer returned from array");
         *(element) = test[i];
-        printf("%d @ %llu |", *(element), (long long unsigned)element);
+        printf("%d @ %llu; ", *(element), (long long unsigned)element);
+        // heap array down here
+        element = (int*) Array_at(heap_array, i);
+        check(element, "NULL pointer returned from array");
+        *(element) = test[i];
+        printf("HEAP %d @ %llu \n", *(element), (long long unsigned)element);
     }
-    
-    return 0;
 
 error:
-    return 1;
+    Array_heap_free(heap_array);
+    return 0;
 }
 
