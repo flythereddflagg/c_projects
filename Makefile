@@ -13,4 +13,4 @@ run: main
 	./$(MAIN).exe
 
 clean:
-	rm $(MAIN).exe
+	rm *.exe
