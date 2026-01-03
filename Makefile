@@ -7,7 +7,7 @@ MAIN = main
 all: main
 
 main: $(MAIN).c
-	$(CC) $(CFLAGS) $(MAIN).c -o $(MAIN).exe -I./include
+	$(CC) $(CFLAGS) $(MAIN).c -o $(MAIN).exe -I./include -L./raylib/lib -lraylib -lgdi32 -lwinmm
 
 run: main
 	./$(MAIN).exe
